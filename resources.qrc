@@ -1,0 +1,33 @@
+<RCC>
+    <qresource prefix="/">
+        <file>assets/i_adjust.png</file>
+        <file>assets/i_clear.png</file>
+        <file>assets/i_default.png</file>
+        <file>assets/i_file.png</file>
+        <file>assets/i_open.png</file>
+        <file>assets/i_params.png</file>
+        <file>assets/i_pause.png</file>
+        <file>assets/i_pause_paused.png</file>
+        <file>assets/i_reset.png</file>
+        <file>assets/i_rules.png</file>
+        <file>assets/i_run.png</file>
+        <file>assets/i_run_running.png</file>
+        <file>assets/i_save.png</file>
+        <file>assets/i_stop.png</file>
+        <file>assets/vb_black_bg_border_512.png</file>
+        <file>assets/i_reset_timer.png</file>
+        <file>assets/i_fullscreen.png</file>
+        <file>models/P46_glider_gun.life</file>
+        <file>models/aircraft_carrier.life</file>
+        <file>models/beacon.life</file>
+        <file>models/beehive.life</file>
+        <file>models/boat.life</file>
+        <file>models/glider.life</file>
+        <file>models/glider_gun.life</file>
+        <file>models/loaf.life</file>
+        <file>models/p46_glider_gun.life</file>
+        <file>models/pentadecathlon.life</file>
+        <file>models/small_ship.life</file>
+        <file>models/toad.life</file>
+    </qresource>
+</RCC>
