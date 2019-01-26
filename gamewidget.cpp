@@ -6,15 +6,15 @@ GameWidget::GameWidget(QWidget *parent) :
     m_color("#000"),
     m_generations(0),
     m_cell(DEFAULT_VALUE_CELLS),
-    m_born(DEFAULT_BORN),
-    m_stase(DEFAULT_STASE),
-    m_dead_alone(DEFAULT_DEAD_ALONE),
-    m_dead_surpopulation(DEFAULT_DEAD_SURPOPULATION)
+    m_born_min(DEFAULT_BORN_MIN),
+    m_born_max(DEFAULT_BORN_MAX),
+    m_born_state(true),
+    m_stase_min(DEFAULT_STASE_MIN),
+    m_stase_max(DEFAULT_STASE_MAX),
+    m_stase_state(true)
 {
-    m_timer->setInterval(300);
     resetCellGame();
     connect(m_timer, SIGNAL(timeout()), this, SLOT(newGeneration()));
-
 }
 
 GameWidget::~GameWidget()
@@ -58,6 +58,27 @@ bool GameWidget::isEmpty()
     }
     return true;
 }
+
+int GameWidget::getBornMin()
+{
+    return m_born_min;
+}
+
+int GameWidget::getBornMax()
+{
+    return m_born_max;
+}
+
+int GameWidget::getStaseMin()
+{
+    return m_stase_min;
+}
+
+int GameWidget::getStaseMax()
+{
+    return m_stase_max;
+}
+
 int GameWidget::getCell()
 {
     return m_cell;
@@ -114,6 +135,20 @@ void GameWidget::setInterval(int msec)
     m_timer->setInterval(msec);
 }
 
+void GameWidget::setModeBorn(int min,int max,bool b)
+{
+    m_born_min=min;
+    m_born_max=max;
+    m_born_state=b;
+}
+
+void GameWidget::setModeStase(int min,int max,bool b)
+{
+    m_stase_min=min;
+    m_stase_max=max;
+    m_stase_state=b;
+}
+
 bool GameWidget::isAlive(int k, int j)
 {
     int power = 0;
@@ -125,8 +160,10 @@ bool GameWidget::isAlive(int k, int j)
     power += m_cell_map[(k-1)*m_cell + (j+1)];
     power += m_cell_map[(k-1)*m_cell + (j-1)];
     power += m_cell_map[(k+1)*m_cell +  (j+1)];
-    if (((m_cell_map[k*m_cell + j] == true) && (power == 2)) || (power == 3))
-           return true;
+
+    if(m_cell_map[k*m_cell + j] == true && power >= m_stase_min && power <=m_stase_max && m_stase_state) return true;
+    if(power >= m_born_min && power <= m_born_max && m_born_state) return true;
+
     return false;
 }
 

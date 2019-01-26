@@ -61,11 +61,17 @@ Controller::Controller(QApplication *app,MainWindow *window, GameWidget *game, Q
     connect(m_game,SIGNAL(gameGenerationSignal()),this,SLOT(run()));
 
     //***parameters
+    connect(m_window->m_ui->actionReset_Color,SIGNAL(triggered()),this,SLOT(resetColor()));
     connect(m_window,SIGNAL(parametersClickedSignal()),this,SLOT(parameters()));
     connect(m_params->m_ui->colorpushButton,SIGNAL(clicked()),this,SLOT(selectColor()));
     connect(m_params,SIGNAL(loadDemoSignal(QString)),this,SLOT(load(QString)));
     connect(m_params,SIGNAL(randomizeModeSignal(int)),this,SLOT(randomize(int)));
-
+    connect(m_params,SIGNAL(modeSignal()),this,SLOT(mode()));
+    connect(m_params->m_ui->reset_mode_pushButton,SIGNAL(clicked()),this,SLOT(resetMode()));
+    connect(m_params->m_ui->reset_timer_pushButton,SIGNAL(clicked()),this,SLOT(resetTimer()));
+    connect(m_params->m_ui->reset_universe_pushButton,SIGNAL(clicked()),this,SLOT(resetUniverse()));
+    connect(m_params->m_ui->reset_color_pushButton,SIGNAL(clicked()),this,SLOT(resetColor()));
+    connect(m_params->m_ui->reset_parameter_pushButton,SIGNAL(clicked()),this,SLOT(resetParams()));
     updateControl();
 }
 
@@ -110,9 +116,39 @@ void Controller::newFile()
     m_game->clearGame();
     resetTimer();
     resetUniverse();
+    resetColor();
+    resetMode();
     m_window->status("");
     m_window->statusBar()->showMessage("New File done",1000);
     updateControl();
+}
+
+void Controller::mode()
+{
+    m_game->setModeBorn(m_params->m_ui->born_min_spinBox->value(),m_params->m_ui->born_max_spinBox->value(), m_params->m_ui->born_checkBox->isChecked());
+    m_game->setModeStase(m_params->m_ui->stase_min_spinBox->value(),m_params->m_ui->stase_max_spinBox->value(), m_params->m_ui->stase_checkBox->isChecked());
+    m_window->statusBar()->showMessage("Game mode changed",1000);
+}
+
+void Controller::resetMode()
+{
+    m_game->setModeBorn(m_game->DEFAULT_BORN_MIN,m_game->DEFAULT_BORN_MAX,true);
+    m_game->setModeStase(m_game->DEFAULT_STASE_MIN,m_game->DEFAULT_STASE_MAX,true);
+    m_params->m_ui->born_checkBox->setChecked(true);
+    m_params->m_ui->stase_checkBox->setChecked(true);
+    m_params->m_ui->stase_min_spinBox->setValue(m_game->getStaseMin());
+    m_params->m_ui->stase_max_spinBox->setValue(m_game->getStaseMax());
+    m_params->m_ui->born_min_spinBox->setValue(m_game->getBornMin());
+    m_params->m_ui->born_max_spinBox->setValue(m_game->getBornMax());
+    m_window->statusBar()->showMessage("Game mode default",1000);
+}
+
+void Controller::resetParams()
+{
+    if(m_game->isEmpty()) resetUniverse();
+    resetTimer();
+    resetColor();
+    m_window->statusBar()->showMessage("Parameters reset",1000);
 }
 
 void Controller::load(QString filename)
@@ -140,7 +176,7 @@ void Controller::load(QString filename)
     int r,g,b; // RGB color
     in >> r >> g >> b;
     m_game->setColor(QColor(r,g,b)); // sets color of the dots
-    QPixmap icon(175, 16); // icon on the button
+    QPixmap icon(157, 16); // icon on the button
     icon.fill(m_game->getColor()); // fill with new color
 
     m_params->m_ui->colorpushButton->setIcon(QIcon(icon));
@@ -202,6 +238,14 @@ void Controller::resetTimer()
    m_window->statusBar()->showMessage("Timer reset",1000);
 }
 
+void Controller::resetColor()
+{
+    m_game->setColor(m_game->DEFAULT_COLOR);
+    QPixmap icon(157, 16);
+    icon.fill(m_game->getColor());
+    m_params->m_ui->colorpushButton->setIcon(QIcon(icon));
+    m_window->statusBar()->showMessage("Color reset",1000);
+}
 void Controller::setUniverseSize(int size)
 {
     m_game->setCellSize(size);
@@ -261,6 +305,7 @@ void Controller::updateControl()
     m_window->m_ui->universe_slider->setEnabled(m_game->isEmpty());
     m_window->m_ui->actionReset_Universe->setEnabled(m_game->isEmpty());
     m_params->m_ui->universe_spinBox->setEnabled(m_game->isEmpty());
+    m_params->m_ui->reset_universe_pushButton->setEnabled(m_game->isEmpty());
     m_params->m_ui->warning_label->setVisible(!m_game->isEmpty());
 
     //Run, Pause

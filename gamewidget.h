@@ -23,10 +23,12 @@ public:
     static const int DEFAULT_MIN_TIMER=1;
     static const int DEFAULT_MAX_TIMER=1000;
     static const int DEFAULT_VALUE_TIMER=200;
-    static const int DEFAULT_BORN=3;
-    static const int DEFAULT_STASE=2;
-    static const int DEFAULT_DEAD_ALONE=2;
-    static const int DEFAULT_DEAD_SURPOPULATION=3;
+    static const int DEFAULT_BORN_MIN=3;
+    static const int DEFAULT_BORN_MAX=3;
+    static const int DEFAULT_STASE_MIN=2;
+    static const int DEFAULT_STASE_MAX=2;
+    const QColor DEFAULT_COLOR="#000";
+
     ~GameWidget();
 
 protected:
@@ -62,12 +64,18 @@ public slots:
     QColor getColor();
     int getGenerations();
     QString dump();
+    int getBornMin();
+    int getBornMax();
+    int getStaseMin();
+    int getStaseMax();
 
     //Setter
     void setCellSize(const int &s);
     void setInterval(int msec);
     void setColor(const QColor &color);
     void setDump(const QString &data);
+    void setModeBorn(int min,int max,bool b);
+    void setModeStase(int min,int max,bool b);
 
 private slots:
     void paintGrid(QPainter &p);
@@ -82,10 +90,12 @@ private:
     bool* m_cell_map;
     bool* m_cell_map_next;
     int m_cell;
-    int m_born;
-    int m_stase;
-    int m_dead_alone;
-    int m_dead_surpopulation;
+    int m_born_min;
+    int m_born_max;
+    bool m_born_state;
+    int m_stase_min;
+    int m_stase_max;
+    bool m_stase_state;
 };
 
 #endif // GAMEWIDGET_H

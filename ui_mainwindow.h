@@ -58,6 +58,7 @@ public:
     QAction *actionFull_Screen;
     QAction *actionCompact;
     QAction *actionReset_Timer;
+    QAction *actionReset_Color;
     QWidget *centralWidget;
     QGridLayout *gridLayout;
     QVBoxLayout *main_layout;
@@ -209,6 +210,11 @@ public:
         QIcon icon17;
         icon17.addFile(QString::fromUtf8(":/assets/i_reset_timer.png"), QSize(), QIcon::Normal, QIcon::Off);
         actionReset_Timer->setIcon(icon17);
+        actionReset_Color = new QAction(MainWindow);
+        actionReset_Color->setObjectName(QString::fromUtf8("actionReset_Color"));
+        QIcon icon18;
+        icon18.addFile(QString::fromUtf8(":/assets/i_reset_color.png"), QSize(), QIcon::Normal, QIcon::Off);
+        actionReset_Color->setIcon(icon18);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         gridLayout = new QGridLayout(centralWidget);
@@ -390,6 +396,7 @@ public:
         menuAbout->addAction(actionHelp);
         menuOptions->addAction(actionReset_Universe);
         menuOptions->addAction(actionReset_Timer);
+        menuOptions->addAction(actionReset_Color);
         menuOptions->addSeparator();
         menuOptions->addAction(actionParameters_2);
         mainToolBar->addAction(actionNew);
@@ -488,6 +495,10 @@ public:
         actionReset_Timer->setText(QApplication::translate("MainWindow", "Reset Timer", nullptr));
 #ifndef QT_NO_SHORTCUT
         actionReset_Timer->setShortcut(QApplication::translate("MainWindow", "Ctrl+T", nullptr));
+#endif // QT_NO_SHORTCUT
+        actionReset_Color->setText(QApplication::translate("MainWindow", "Reset Color", nullptr));
+#ifndef QT_NO_SHORTCUT
+        actionReset_Color->setShortcut(QApplication::translate("MainWindow", "Ctrl+C", nullptr));
 #endif // QT_NO_SHORTCUT
         groupBox_params->setTitle(QApplication::translate("MainWindow", "Parameters", nullptr));
         universe_label->setText(QApplication::translate("MainWindow", "Universe size", nullptr));

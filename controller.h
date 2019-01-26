@@ -40,6 +40,10 @@ public slots:
     void parameters();
     void selectColor();
     void randomize(int r);
+    void mode();
+    void resetMode();
+    void resetColor();
+    void resetParams();
 
  private :
     void updateControl();

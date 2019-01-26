@@ -7,7 +7,7 @@ ParametersDialog::ParametersDialog(QWidget *parent) :
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint); //remove "?" on the top of the dialog box
     m_ui->setupUi(this);
     m_ui->warning_label->setVisible(false);
-    QPixmap icon(175, 16);
+    QPixmap icon(157, 16);
     icon.fill("#000");
     m_ui->colorpushButton->setIcon(QIcon(icon));
     //connect
@@ -15,13 +15,28 @@ ParametersDialog::ParametersDialog(QWidget *parent) :
     connect(m_ui->timer_spinBox,SIGNAL(valueChanged(int)),this,SLOT(timerChanged(int)));
     connect(m_ui->demo_load_pushButton,SIGNAL(clicked()),this,SLOT(loadDemo()));
     connect(m_ui->random_pushButton,SIGNAL(clicked()),this,SLOT(randomizeMode()));
+    connect(m_ui->born_min_spinBox,SIGNAL(valueChanged(int)),this,SLOT(modeChanged()));
+    connect(m_ui->born_max_spinBox,SIGNAL(valueChanged(int)),this,SLOT(modeChanged()));
+    connect(m_ui->stase_min_spinBox,SIGNAL(valueChanged(int)),this,SLOT(modeChanged()));
+    connect(m_ui->stase_max_spinBox,SIGNAL(valueChanged(int)),this,SLOT(modeChanged()));
+    connect(m_ui->born_checkBox,SIGNAL(toggled(bool)),this,SLOT(modeChanged()));
+    connect(m_ui->stase_checkBox,SIGNAL(toggled(bool)),this,SLOT(modeChanged()));
 }
+
 
 ParametersDialog::~ParametersDialog()
 {
     delete m_ui;
 }
 
+void ParametersDialog::modeChanged()
+{
+    m_ui->born_min_spinBox->setEnabled(m_ui->born_checkBox->isChecked());
+    m_ui->born_max_spinBox->setEnabled(m_ui->born_checkBox->isChecked());
+    m_ui->stase_min_spinBox->setEnabled(m_ui->stase_checkBox->isChecked());
+    m_ui->stase_max_spinBox->setEnabled(m_ui->stase_checkBox->isChecked());
+    emit modeSignal();
+}
 void ParametersDialog::universeSizeChanged(int size)
 {
         emit universeSizeChangedSignal(size);

@@ -28,5 +28,6 @@
         <file>models/small_ship.life</file>
         <file>models/toad.life</file>
         <file>assets/i_help.png</file>
+        <file>assets/i_reset_color.png</file>
     </qresource>
 </RCC>

@@ -319,6 +319,7 @@
     </property>
     <addaction name="actionReset_Universe"/>
     <addaction name="actionReset_Timer"/>
+    <addaction name="actionReset_Color"/>
     <addaction name="separator"/>
     <addaction name="actionParameters_2"/>
    </widget>
@@ -637,6 +638,18 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+T</string>
+   </property>
+  </action>
+  <action name="actionReset_Color">
+   <property name="icon">
+    <iconset resource="resources.qrc">
+     <normaloff>:/assets/i_reset_color.png</normaloff>:/assets/i_reset_color.png</iconset>
+   </property>
+   <property name="text">
+    <string>Reset Color</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+C</string>
    </property>
   </action>
  </widget>

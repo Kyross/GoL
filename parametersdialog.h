@@ -25,12 +25,14 @@ signals:
     void timerChangedSignal(int);
     void loadDemoSignal(QString);
     void randomizeModeSignal(int);
+    void modeSignal();
 
 public slots:
     void universeSizeChanged(int size);
     void timerChanged(int time);
     void loadDemo();
     void randomizeMode();
+    void modeChanged();
 
 private:
 

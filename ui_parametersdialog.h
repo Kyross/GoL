@@ -35,38 +35,43 @@ public:
     QTabWidget *tabWidget;
     QWidget *tab;
     QGridLayout *gridLayout_3;
+    QSpacerItem *verticalSpacer_4;
     QVBoxLayout *verticalLayout_4;
     QSpacerItem *verticalSpacer_3;
     QHBoxLayout *horizontalLayout_8;
     QVBoxLayout *verticalLayout_2;
     QLabel *label;
     QLabel *warning_label;
+    QPushButton *reset_universe_pushButton;
     QSpinBox *universe_spinBox;
     QSpacerItem *verticalSpacer_2;
     QHBoxLayout *horizontalLayout_7;
     QLabel *label_2;
+    QPushButton *reset_timer_pushButton;
     QSpinBox *timer_spinBox;
     QSpacerItem *verticalSpacer;
     QHBoxLayout *horizontalLayout_6;
     QLabel *label_3;
+    QPushButton *reset_color_pushButton;
     QPushButton *colorpushButton;
-    QSpacerItem *verticalSpacer_4;
+    QPushButton *reset_parameter_pushButton;
     QWidget *tab_2;
     QGridLayout *gridLayout_7;
+    QPushButton *reset_mode_pushButton;
     QGridLayout *gridLayout_6;
-    QHBoxLayout *horizontalLayout_3;
-    QCheckBox *stase_checkBox;
-    QSpinBox *stase_spinBox;
-    QHBoxLayout *horizontalLayout_10;
-    QCheckBox *dead_checkBox;
-    QSpinBox *dead_alone_spinBox;
     QHBoxLayout *horizontalLayout_5;
     QCheckBox *born_checkBox;
-    QSpinBox *born_spinBox;
-    QHBoxLayout *horizontalLayout_11;
-    QCheckBox *checkBox;
-    QSpinBox *dead_surpopulation_spinBox;
-    QPushButton *reset_mode_pushButton;
+    QSpinBox *born_min_spinBox;
+    QLabel *label_5;
+    QSpinBox *born_max_spinBox;
+    QHBoxLayout *horizontalLayout_3;
+    QCheckBox *stase_checkBox;
+    QSpinBox *stase_min_spinBox;
+    QLabel *label_6;
+    QSpinBox *stase_max_spinBox;
+    QSpacerItem *verticalSpacer_10;
+    QSpacerItem *verticalSpacer_11;
+    QSpacerItem *verticalSpacer_9;
     QWidget *tab_3;
     QGridLayout *gridLayout_5;
     QGridLayout *gridLayout_4;
@@ -102,6 +107,10 @@ public:
         tab->setObjectName(QString::fromUtf8("tab"));
         gridLayout_3 = new QGridLayout(tab);
         gridLayout_3->setObjectName(QString::fromUtf8("gridLayout_3"));
+        verticalSpacer_4 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        gridLayout_3->addItem(verticalSpacer_4, 2, 0, 1, 1);
+
         verticalLayout_4 = new QVBoxLayout();
         verticalLayout_4->setObjectName(QString::fromUtf8("verticalLayout_4"));
         verticalSpacer_3 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
@@ -127,6 +136,16 @@ public:
 
         horizontalLayout_8->addLayout(verticalLayout_2);
 
+        reset_universe_pushButton = new QPushButton(tab);
+        reset_universe_pushButton->setObjectName(QString::fromUtf8("reset_universe_pushButton"));
+        reset_universe_pushButton->setMaximumSize(QSize(25, 16777215));
+        QIcon icon1;
+        icon1.addFile(QString::fromUtf8(":/assets/i_reset.png"), QSize(), QIcon::Normal, QIcon::Off);
+        reset_universe_pushButton->setIcon(icon1);
+        reset_universe_pushButton->setAutoDefault(false);
+
+        horizontalLayout_8->addWidget(reset_universe_pushButton);
+
         universe_spinBox = new QSpinBox(tab);
         universe_spinBox->setObjectName(QString::fromUtf8("universe_spinBox"));
 
@@ -145,6 +164,16 @@ public:
         label_2->setObjectName(QString::fromUtf8("label_2"));
 
         horizontalLayout_7->addWidget(label_2);
+
+        reset_timer_pushButton = new QPushButton(tab);
+        reset_timer_pushButton->setObjectName(QString::fromUtf8("reset_timer_pushButton"));
+        reset_timer_pushButton->setMaximumSize(QSize(25, 25));
+        QIcon icon2;
+        icon2.addFile(QString::fromUtf8(":/assets/i_reset_timer.png"), QSize(), QIcon::Normal, QIcon::Off);
+        reset_timer_pushButton->setIcon(icon2);
+        reset_timer_pushButton->setAutoDefault(false);
+
+        horizontalLayout_7->addWidget(reset_timer_pushButton);
 
         timer_spinBox = new QSpinBox(tab);
         timer_spinBox->setObjectName(QString::fromUtf8("timer_spinBox"));
@@ -165,9 +194,19 @@ public:
 
         horizontalLayout_6->addWidget(label_3);
 
+        reset_color_pushButton = new QPushButton(tab);
+        reset_color_pushButton->setObjectName(QString::fromUtf8("reset_color_pushButton"));
+        reset_color_pushButton->setMaximumSize(QSize(25, 16777215));
+        QIcon icon3;
+        icon3.addFile(QString::fromUtf8(":/assets/i_reset_color.png"), QSize(), QIcon::Normal, QIcon::Off);
+        reset_color_pushButton->setIcon(icon3);
+        reset_color_pushButton->setAutoDefault(false);
+
+        horizontalLayout_6->addWidget(reset_color_pushButton);
+
         colorpushButton = new QPushButton(tab);
         colorpushButton->setObjectName(QString::fromUtf8("colorpushButton"));
-        colorpushButton->setMinimumSize(QSize(175, 16));
+        colorpushButton->setMinimumSize(QSize(157, 16));
         colorpushButton->setMaximumSize(QSize(16, 16));
         colorpushButton->setIconSize(QSize(175, 16));
         colorpushButton->setAutoDefault(false);
@@ -180,53 +219,25 @@ public:
 
         gridLayout_3->addLayout(verticalLayout_4, 0, 0, 1, 1);
 
-        verticalSpacer_4 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+        reset_parameter_pushButton = new QPushButton(tab);
+        reset_parameter_pushButton->setObjectName(QString::fromUtf8("reset_parameter_pushButton"));
+        reset_parameter_pushButton->setAutoDefault(false);
 
-        gridLayout_3->addItem(verticalSpacer_4, 1, 0, 1, 1);
+        gridLayout_3->addWidget(reset_parameter_pushButton, 3, 0, 1, 1);
 
         tabWidget->addTab(tab, QString());
         tab_2 = new QWidget();
         tab_2->setObjectName(QString::fromUtf8("tab_2"));
         gridLayout_7 = new QGridLayout(tab_2);
         gridLayout_7->setObjectName(QString::fromUtf8("gridLayout_7"));
+        reset_mode_pushButton = new QPushButton(tab_2);
+        reset_mode_pushButton->setObjectName(QString::fromUtf8("reset_mode_pushButton"));
+        reset_mode_pushButton->setAutoDefault(false);
+
+        gridLayout_7->addWidget(reset_mode_pushButton, 2, 0, 1, 1);
+
         gridLayout_6 = new QGridLayout();
         gridLayout_6->setObjectName(QString::fromUtf8("gridLayout_6"));
-        horizontalLayout_3 = new QHBoxLayout();
-        horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
-        stase_checkBox = new QCheckBox(tab_2);
-        stase_checkBox->setObjectName(QString::fromUtf8("stase_checkBox"));
-        stase_checkBox->setChecked(true);
-
-        horizontalLayout_3->addWidget(stase_checkBox);
-
-        stase_spinBox = new QSpinBox(tab_2);
-        stase_spinBox->setObjectName(QString::fromUtf8("stase_spinBox"));
-        stase_spinBox->setMaximum(9);
-        stase_spinBox->setValue(2);
-
-        horizontalLayout_3->addWidget(stase_spinBox);
-
-
-        gridLayout_6->addLayout(horizontalLayout_3, 3, 0, 1, 1);
-
-        horizontalLayout_10 = new QHBoxLayout();
-        horizontalLayout_10->setObjectName(QString::fromUtf8("horizontalLayout_10"));
-        dead_checkBox = new QCheckBox(tab_2);
-        dead_checkBox->setObjectName(QString::fromUtf8("dead_checkBox"));
-        dead_checkBox->setChecked(true);
-
-        horizontalLayout_10->addWidget(dead_checkBox);
-
-        dead_alone_spinBox = new QSpinBox(tab_2);
-        dead_alone_spinBox->setObjectName(QString::fromUtf8("dead_alone_spinBox"));
-        dead_alone_spinBox->setMaximum(9);
-        dead_alone_spinBox->setValue(2);
-
-        horizontalLayout_10->addWidget(dead_alone_spinBox);
-
-
-        gridLayout_6->addLayout(horizontalLayout_10, 4, 0, 1, 1);
-
         horizontalLayout_5 = new QHBoxLayout();
         horizontalLayout_5->setObjectName(QString::fromUtf8("horizontalLayout_5"));
         born_checkBox = new QCheckBox(tab_2);
@@ -236,42 +247,75 @@ public:
 
         horizontalLayout_5->addWidget(born_checkBox);
 
-        born_spinBox = new QSpinBox(tab_2);
-        born_spinBox->setObjectName(QString::fromUtf8("born_spinBox"));
-        born_spinBox->setMaximum(9);
-        born_spinBox->setValue(3);
+        born_min_spinBox = new QSpinBox(tab_2);
+        born_min_spinBox->setObjectName(QString::fromUtf8("born_min_spinBox"));
+        born_min_spinBox->setMaximum(9);
+        born_min_spinBox->setValue(3);
 
-        horizontalLayout_5->addWidget(born_spinBox);
+        horizontalLayout_5->addWidget(born_min_spinBox);
+
+        label_5 = new QLabel(tab_2);
+        label_5->setObjectName(QString::fromUtf8("label_5"));
+        label_5->setMaximumSize(QSize(10, 16777215));
+
+        horizontalLayout_5->addWidget(label_5);
+
+        born_max_spinBox = new QSpinBox(tab_2);
+        born_max_spinBox->setObjectName(QString::fromUtf8("born_max_spinBox"));
+        born_max_spinBox->setMaximum(9);
+        born_max_spinBox->setValue(3);
+
+        horizontalLayout_5->addWidget(born_max_spinBox);
 
 
         gridLayout_6->addLayout(horizontalLayout_5, 2, 0, 1, 1);
 
-        horizontalLayout_11 = new QHBoxLayout();
-        horizontalLayout_11->setObjectName(QString::fromUtf8("horizontalLayout_11"));
-        checkBox = new QCheckBox(tab_2);
-        checkBox->setObjectName(QString::fromUtf8("checkBox"));
-        checkBox->setChecked(true);
+        horizontalLayout_3 = new QHBoxLayout();
+        horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
+        stase_checkBox = new QCheckBox(tab_2);
+        stase_checkBox->setObjectName(QString::fromUtf8("stase_checkBox"));
+        stase_checkBox->setChecked(true);
 
-        horizontalLayout_11->addWidget(checkBox);
+        horizontalLayout_3->addWidget(stase_checkBox);
 
-        dead_surpopulation_spinBox = new QSpinBox(tab_2);
-        dead_surpopulation_spinBox->setObjectName(QString::fromUtf8("dead_surpopulation_spinBox"));
-        dead_surpopulation_spinBox->setMaximum(9);
-        dead_surpopulation_spinBox->setValue(3);
+        stase_min_spinBox = new QSpinBox(tab_2);
+        stase_min_spinBox->setObjectName(QString::fromUtf8("stase_min_spinBox"));
+        stase_min_spinBox->setMaximum(9);
+        stase_min_spinBox->setValue(2);
 
-        horizontalLayout_11->addWidget(dead_surpopulation_spinBox);
+        horizontalLayout_3->addWidget(stase_min_spinBox);
+
+        label_6 = new QLabel(tab_2);
+        label_6->setObjectName(QString::fromUtf8("label_6"));
+        label_6->setMinimumSize(QSize(10, 0));
+        label_6->setMaximumSize(QSize(10, 16777215));
+
+        horizontalLayout_3->addWidget(label_6);
+
+        stase_max_spinBox = new QSpinBox(tab_2);
+        stase_max_spinBox->setObjectName(QString::fromUtf8("stase_max_spinBox"));
+        stase_max_spinBox->setMaximum(9);
+        stase_max_spinBox->setValue(2);
+
+        horizontalLayout_3->addWidget(stase_max_spinBox);
 
 
-        gridLayout_6->addLayout(horizontalLayout_11, 5, 0, 1, 1);
+        gridLayout_6->addLayout(horizontalLayout_3, 4, 0, 1, 1);
+
+        verticalSpacer_10 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        gridLayout_6->addItem(verticalSpacer_10, 3, 0, 1, 1);
+
+        verticalSpacer_11 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        gridLayout_6->addItem(verticalSpacer_11, 0, 0, 1, 1);
 
 
         gridLayout_7->addLayout(gridLayout_6, 0, 0, 1, 1);
 
-        reset_mode_pushButton = new QPushButton(tab_2);
-        reset_mode_pushButton->setObjectName(QString::fromUtf8("reset_mode_pushButton"));
-        reset_mode_pushButton->setAutoDefault(false);
+        verticalSpacer_9 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
-        gridLayout_7->addWidget(reset_mode_pushButton, 1, 0, 1, 1);
+        gridLayout_7->addItem(verticalSpacer_9, 1, 0, 1, 1);
 
         tabWidget->addTab(tab_2, QString());
         tab_3 = new QWidget();
@@ -309,6 +353,7 @@ public:
 
         random_pushButton = new QPushButton(tab_3);
         random_pushButton->setObjectName(QString::fromUtf8("random_pushButton"));
+        random_pushButton->setAutoDefault(false);
 
         horizontalLayout_4->addWidget(random_pushButton);
 
@@ -377,23 +422,38 @@ public:
         ParametersDialog->setWindowTitle(QApplication::translate("ParametersDialog", "Parameters", nullptr));
         label->setText(QApplication::translate("ParametersDialog", "Universe size", nullptr));
         warning_label->setText(QApplication::translate("ParametersDialog", "<html><head/><body><p><span style=\" color:#ff0000;\">Game must be clear before</span></p></body></html>", nullptr));
+#ifndef QT_NO_TOOLTIP
+        reset_universe_pushButton->setToolTip(QApplication::translate("ParametersDialog", "Reset Universe", nullptr));
+#endif // QT_NO_TOOLTIP
+        reset_universe_pushButton->setText(QString());
         universe_spinBox->setSuffix(QApplication::translate("ParametersDialog", " cells", nullptr));
         label_2->setText(QApplication::translate("ParametersDialog", "Timer", nullptr));
+#ifndef QT_NO_TOOLTIP
+        reset_timer_pushButton->setToolTip(QApplication::translate("ParametersDialog", "Reset Timer", nullptr));
+#endif // QT_NO_TOOLTIP
+        reset_timer_pushButton->setText(QString());
         timer_spinBox->setSuffix(QApplication::translate("ParametersDialog", " ms", nullptr));
         label_3->setText(QApplication::translate("ParametersDialog", "Color", nullptr));
+#ifndef QT_NO_TOOLTIP
+        reset_color_pushButton->setToolTip(QApplication::translate("ParametersDialog", "Reset Color", nullptr));
+#endif // QT_NO_TOOLTIP
+        reset_color_pushButton->setText(QString());
         colorpushButton->setText(QString());
+        reset_parameter_pushButton->setText(QApplication::translate("ParametersDialog", "Reset", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("ParametersDialog", "Parameters", nullptr));
-        stase_checkBox->setText(QApplication::translate("ParametersDialog", "Stase", nullptr));
-        stase_spinBox->setSuffix(QApplication::translate("ParametersDialog", " = neighbour", nullptr));
-        dead_checkBox->setText(QApplication::translate("ParametersDialog", "Dead alone", nullptr));
-        dead_alone_spinBox->setSuffix(QApplication::translate("ParametersDialog", " < neighbour", nullptr));
-        dead_alone_spinBox->setPrefix(QString());
-        born_checkBox->setText(QApplication::translate("ParametersDialog", "Born", nullptr));
-        born_spinBox->setSuffix(QApplication::translate("ParametersDialog", " = neighbour", nullptr));
-        checkBox->setText(QApplication::translate("ParametersDialog", "Dead surpopulation", nullptr));
-        dead_surpopulation_spinBox->setSuffix(QApplication::translate("ParametersDialog", " > neighbour", nullptr));
         reset_mode_pushButton->setText(QApplication::translate("ParametersDialog", "Reset", nullptr));
+        born_checkBox->setText(QApplication::translate("ParametersDialog", "Born", nullptr));
+        born_min_spinBox->setSuffix(QApplication::translate("ParametersDialog", " neighbour", nullptr));
+        label_5->setText(QApplication::translate("ParametersDialog", "to", nullptr));
+        born_max_spinBox->setSuffix(QApplication::translate("ParametersDialog", "  neighbour", nullptr));
+        stase_checkBox->setText(QApplication::translate("ParametersDialog", "Stase", nullptr));
+        stase_min_spinBox->setSuffix(QApplication::translate("ParametersDialog", " neighbour", nullptr));
+        label_6->setText(QApplication::translate("ParametersDialog", "to", nullptr));
+        stase_max_spinBox->setSuffix(QApplication::translate("ParametersDialog", " neighbour", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("ParametersDialog", "Game Mode", nullptr));
+#ifndef QT_NO_TOOLTIP
+        label_4->setToolTip(QApplication::translate("ParametersDialog", "https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life#Examples_of_patterns", nullptr));
+#endif // QT_NO_TOOLTIP
         label_4->setText(QApplication::translate("ParametersDialog", "<html><head/><body><p><a href=\"https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life#Examples_of_patterns\"><span style=\" text-decoration: underline; color:#0000ff;\">Example of patterns</span></a></p></body></html>", nullptr));
         random_spinBox->setSuffix(QApplication::translate("ParametersDialog", " % ", nullptr));
         random_pushButton->setText(QApplication::translate("ParametersDialog", "Random ", nullptr));
