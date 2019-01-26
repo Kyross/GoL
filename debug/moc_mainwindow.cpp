@@ -22,7 +22,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
     QByteArrayData data[39];
-    char stringdata0[577];
+    char stringdata0[576];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -69,7 +69,7 @@ QT_MOC_LITERAL(34, 520, 11), // "resizeEvent"
 QT_MOC_LITERAL(35, 532, 13), // "QResizeEvent*"
 QT_MOC_LITERAL(36, 546, 1), // "e"
 QT_MOC_LITERAL(37, 548, 15), // "aboutGolClicked"
-QT_MOC_LITERAL(38, 564, 12) // "rulesClicked"
+QT_MOC_LITERAL(38, 564, 11) // "helpClicked"
 
     },
     "MainWindow\0runClickedSignal\0\0"
@@ -88,7 +88,7 @@ QT_MOC_LITERAL(38, 564, 12) // "rulesClicked"
     "hideToolbar\0hide\0hideParameters\0"
     "maximizedClicked\0fullscreenClicked\0"
     "normalClicked\0resizeEvent\0QResizeEvent*\0"
-    "e\0aboutGolClicked\0rulesClicked"
+    "e\0aboutGolClicked\0helpClicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -217,7 +217,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 28: _t->normalClicked(); break;
         case 29: _t->resizeEvent((*reinterpret_cast< QResizeEvent*(*)>(_a[1]))); break;
         case 30: _t->aboutGolClicked(); break;
-        case 31: _t->rulesClicked(); break;
+        case 31: _t->helpClicked(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {

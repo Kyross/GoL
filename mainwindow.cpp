@@ -28,6 +28,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(m_ui->actionFull_Screen,SIGNAL(triggered()),this,SLOT(fullscreenClicked()));
     connect(m_ui->actionAbout,SIGNAL(triggered()),this,SLOT(aboutGolClicked()));
     connect(m_ui->actionParameters_2,SIGNAL(triggered()),this,SLOT(parametersClicked()));
+    connect(m_ui->actionHelp,SIGNAL(triggered()),this,SLOT(helpClicked()));
 }
 
 MainWindow::~MainWindow()
@@ -100,8 +101,20 @@ void MainWindow::aboutGolClicked(){
    new aboutBox();
 }
 
-void MainWindow::rulesClicked(){
+void MainWindow::helpClicked(){
+    QMessageBox helpBox;
+    QPushButton *md_button = helpBox.addButton(tr("Open MarkDown"), QMessageBox::ActionRole);
+    helpBox.addButton(QMessageBox::Close);
 
+    helpBox.setWindowTitle("Help !");
+    helpBox.setWindowIcon(QPixmap(":/assets/vb_black_bg_border_512.png"));
+    helpBox.setText("<html><head/><body><p><span style=' font-weight:600;'>Introduction</span></p><p>The Game of Life, also known simply as Life, is a cellular automaton devised by the British mathematician John Horton Conway in 1970.</p><p><br/></p><p>The game is a zero-player game, meaning that its evolution is determined by its initial state, requiring no further input. One interacts with the Game of Life by creating an initial configuration and observing how it evolves, or, for advanced players, by creating patterns with particular properties. </p><p><br/></p><p><span style=' font-weight:600;'>Rules (default game mode)</span></p><p>    Any live cell with fewer than two live neighbors dies, as if by underpopulation.</p><p>    Any live cell with two or three live neighbors lives on to the next generation.</p><p>    Any live cell with more than three live neighbors dies, as if by overpopulation.</p><p>    Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction.</p><p><br/></p><p><span style=' font-weight:600;'>Controls</span></p><p>- Right click : to fill a cell</p><p>- Left click : to unfill a cell</p><p><br/></p><p><span style=' color:#00aa7f;'>To more details please check the MarkDown file</span><br/></p></body></html>");
+    helpBox.exec();
+
+    if (helpBox.clickedButton() == md_button) {
+        // open MD
+        QDesktopServices::openUrl(QUrl("https://gitlab.com/Kyross/game_of_life/blob/master/help"));
+    }
 }
 
 /***************************

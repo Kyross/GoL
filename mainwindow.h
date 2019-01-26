@@ -9,6 +9,7 @@
 #include <QLabel>
 #include <QDebug>
 #include <QLabel>
+#include <QDesktopServices>
 
 namespace Ui {
 class MainWindow;
@@ -64,7 +65,7 @@ public slots:
     void resizeEvent( QResizeEvent *e );
     //About
     void aboutGolClicked();
-    void rulesClicked();
+    void helpClicked();
 
 private:
     QLabel m_status;

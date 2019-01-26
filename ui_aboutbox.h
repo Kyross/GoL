@@ -160,7 +160,7 @@ public:
         close_pushButton->setText(QApplication::translate("aboutBox", "Close", nullptr));
         label->setText(QString());
         label_2->setText(QApplication::translate("aboutBox", "Game of Life", nullptr));
-        label_4->setText(QApplication::translate("aboutBox", "V1.0 - 01/22/2019", nullptr));
+        label_4->setText(QApplication::translate("aboutBox", "V1.0 - 01/26/2019", nullptr));
         label_5->setText(QApplication::translate("aboutBox", "<html><head/><body><p><a href=\"https://vberthet.me/\"><span style=\" text-decoration: underline; color:#00aa7f;\">https:://vberthet.me</span></a></p></body></html>", nullptr));
         label_3->setText(QApplication::translate("aboutBox", "\302\251 Vincent Berthet", nullptr));
     } // retranslateUi

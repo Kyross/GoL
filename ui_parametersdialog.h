@@ -249,7 +249,7 @@ public:
 
         born_min_spinBox = new QSpinBox(tab_2);
         born_min_spinBox->setObjectName(QString::fromUtf8("born_min_spinBox"));
-        born_min_spinBox->setMaximum(9);
+        born_min_spinBox->setMaximum(8);
         born_min_spinBox->setValue(3);
 
         horizontalLayout_5->addWidget(born_min_spinBox);
@@ -262,7 +262,7 @@ public:
 
         born_max_spinBox = new QSpinBox(tab_2);
         born_max_spinBox->setObjectName(QString::fromUtf8("born_max_spinBox"));
-        born_max_spinBox->setMaximum(9);
+        born_max_spinBox->setMaximum(8);
         born_max_spinBox->setValue(3);
 
         horizontalLayout_5->addWidget(born_max_spinBox);
@@ -280,7 +280,7 @@ public:
 
         stase_min_spinBox = new QSpinBox(tab_2);
         stase_min_spinBox->setObjectName(QString::fromUtf8("stase_min_spinBox"));
-        stase_min_spinBox->setMaximum(9);
+        stase_min_spinBox->setMaximum(8);
         stase_min_spinBox->setValue(2);
 
         horizontalLayout_3->addWidget(stase_min_spinBox);
@@ -294,7 +294,7 @@ public:
 
         stase_max_spinBox = new QSpinBox(tab_2);
         stase_max_spinBox->setObjectName(QString::fromUtf8("stase_max_spinBox"));
-        stase_max_spinBox->setMaximum(9);
+        stase_max_spinBox->setMaximum(8);
         stase_max_spinBox->setValue(2);
 
         horizontalLayout_3->addWidget(stase_max_spinBox);
@@ -411,7 +411,7 @@ public:
 
         retranslateUi(ParametersDialog);
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(ParametersDialog);
