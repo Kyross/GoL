@@ -113,7 +113,7 @@ void MainWindow::helpClicked(){
 
     if (helpBox.clickedButton() == md_button) {
         // open MD
-        QDesktopServices::openUrl(QUrl("https://gitlab.com/Kyross/game_of_life/blob/master/help"));
+        QDesktopServices::openUrl(QUrl("https://gitlab.com/Kyross/game_of_life/blob/master/help.md"));
     }
 }
 
