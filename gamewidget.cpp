@@ -3,16 +3,18 @@
 GameWidget::GameWidget(QWidget *parent) :
     QWidget(parent),
     m_timer(new QTimer(this)),
-    m_cell(50)
+    m_color("#000"),
+    m_generations(0),
+    m_cell(DEFAULT_VALUE_CELLS),
+    m_born(DEFAULT_BORN),
+    m_stase(DEFAULT_STASE),
+    m_dead_alone(DEFAULT_DEAD_ALONE),
+    m_dead_surpopulation(DEFAULT_DEAD_SURPOPULATION)
 {
-    m_generations=0;
     m_timer->setInterval(300);
-    m_color = "#000";
-    m_cell_map = new bool[(m_cell + 2) * (m_cell + 2)];
-    m_cell_map_next = new bool[(m_cell + 2) * (m_cell + 2)];
+    resetCellGame();
     connect(m_timer, SIGNAL(timeout()), this, SLOT(newGeneration()));
-    memset(m_cell_map, false, sizeof(bool)*(m_cell + 2) * (m_cell + 2));
-    memset(m_cell_map_next, false, sizeof(bool)*(m_cell + 2) * (m_cell + 2));
+
 }
 
 GameWidget::~GameWidget()
@@ -78,8 +80,8 @@ void GameWidget::setCellSize(const int &s)
 
 void GameWidget::resetCellGame()
 {
-    delete [] m_cell_map;
-    delete [] m_cell_map_next;
+    if(m_cell_map==nullptr)delete [] m_cell_map;
+    if(m_cell_map_next==nullptr)delete [] m_cell_map_next;
     m_cell_map = new bool[(m_cell + 2) * (m_cell + 2)];
     m_cell_map_next = new bool[(m_cell + 2) * (m_cell + 2)];
     memset(m_cell_map, false, sizeof(bool)*(m_cell + 2) * (m_cell + 2));
@@ -197,13 +199,15 @@ void GameWidget::paintEvent(QPaintEvent *)
 
 void GameWidget::mousePressEvent(QMouseEvent *e)
 {
-    emit gameEnvironmentChanged();
     double cellWidth = (double)width()/m_cell;
     double cellHeight = (double)height()/m_cell;
     int k = floor(e->y()/cellHeight)+1;
     int j = floor(e->x()/cellWidth)+1;
-    m_cell_map[k*m_cell + j] = !m_cell_map[k*m_cell + j];
+    int currentLocation = k*m_cell + j;
+    if(e->buttons().testFlag(Qt::LeftButton)) m_cell_map[currentLocation]=true;
+    if(e->buttons().testFlag(Qt::RightButton)) m_cell_map[currentLocation]=false;
     update();
+    emit gameEnvironmentChanged();
 }
 
 void GameWidget::mouseReleaseEvent(QMouseEvent *e)
@@ -214,14 +218,17 @@ void GameWidget::mouseReleaseEvent(QMouseEvent *e)
 
 void GameWidget::mouseMoveEvent(QMouseEvent *e)
 {
-    emit gameEnvironmentChanged();
-    double cellWidth = (double)width()/m_cell;
-    double cellHeight = (double)height()/m_cell;
-    int k = floor(e->y()/cellHeight)+1;
-    int j = floor(e->x()/cellWidth)+1;
-    int currentLocation = k*m_cell + j;
-    if(!m_cell_map[currentLocation]){                //if current cell is empty,fill in it
-        m_cell_map [currentLocation]= !m_cell_map[currentLocation];
+    if(e->x()>=0 && e->x()<width() && e->y()>=0 && e->y()<height()){
+        //not out of bounds of the grid
+        emit gameEnvironmentChanged();
+        double cellWidth = (double)width()/m_cell;
+        double cellHeight = (double)height()/m_cell;
+        int k = floor(e->y()/cellHeight)+1;
+        int j = floor(e->x()/cellWidth)+1;
+        int currentLocation = k*m_cell + j;
+
+        if(e->buttons().testFlag(Qt::LeftButton)) m_cell_map [currentLocation]= true;
+        if(e->buttons().testFlag(Qt::RightButton)) m_cell_map [currentLocation]= false;
         update();
     }
 }
@@ -229,8 +236,8 @@ void GameWidget::mouseMoveEvent(QMouseEvent *e)
 void GameWidget::paintGrid(QPainter &p)
 {
     QRect borders(0, 0, width()-1, height()-1); // borders of the universe
-    QColor gridColor = m_color; // color of the grid
-    gridColor.setAlpha(10); // must be lighter than main color
+    QColor gridColor = "#000"; // color of the grid
+    gridColor.setAlpha(40); // must be lighter than main color
     p.setPen(gridColor);
     double cellWidth = (double)width()/m_cell; // width of the widget / number of cells at one row
     for(double k = cellWidth; k <= width(); k += cellWidth)
@@ -250,7 +257,7 @@ void GameWidget::paintCell(QPainter &p)
             if(m_cell_map[k*m_cell + j] == true) { // if there is any sense to paint it
                 qreal left = (qreal)(cellWidth*j-cellWidth); // margin from left
                 qreal top  = (qreal)(cellHeight*k-cellHeight); // margin from top
-                QRectF r(left, top, (qreal)cellWidth, (qreal)cellHeight);
+                QRectF r(left, top, (qreal)cellWidth-1, (qreal)cellHeight-1);
                 p.fillRect(r, QBrush(m_color)); // fill cell with brush of main color
             }
         }

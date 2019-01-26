@@ -19,10 +19,14 @@ public:
     explicit GameWidget(QWidget *parent = 0);
     static const int DEFAULT_MIN_CELLS=6;
     static const int DEFAULT_MAX_CELLS=500;
-    static const int DEFAULT_VALUE_CELLS=50;
+    static const int DEFAULT_VALUE_CELLS=20;
     static const int DEFAULT_MIN_TIMER=1;
-    static const int DEFAULT_MAX_TIMER=500;
+    static const int DEFAULT_MAX_TIMER=1000;
     static const int DEFAULT_VALUE_TIMER=200;
+    static const int DEFAULT_BORN=3;
+    static const int DEFAULT_STASE=2;
+    static const int DEFAULT_DEAD_ALONE=2;
+    static const int DEFAULT_DEAD_SURPOPULATION=3;
     ~GameWidget();
 
 protected:
@@ -72,12 +76,16 @@ private slots:
 
 private:
     bool isAlive(int k, int j);
-    QColor m_color;
     QTimer * m_timer;
+    QColor m_color;
     int m_generations;
     bool* m_cell_map;
     bool* m_cell_map_next;
     int m_cell;
+    int m_born;
+    int m_stase;
+    int m_dead_alone;
+    int m_dead_surpopulation;
 };
 
 #endif // GAMEWIDGET_H

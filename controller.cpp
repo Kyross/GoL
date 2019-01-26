@@ -225,7 +225,7 @@ void Controller::setTimer(int t)
 void Controller::painted()
 {
     updateControl();
-    m_window->statusBar()->showMessage("Painting recorded",1000);
+    m_window->statusBar()->showMessage("Painting",1000);
     if(m_window->m_ui->actionRun->isEnabled() && !m_game->isRunning()) m_window->status("Game is ready");
 }
 

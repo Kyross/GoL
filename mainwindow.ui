@@ -311,7 +311,7 @@
      <string>&amp;About</string>
     </property>
     <addaction name="actionAbout"/>
-    <addaction name="actionRules"/>
+    <addaction name="actionHelp"/>
    </widget>
    <widget class="QMenu" name="menuOptions">
     <property name="title">
@@ -543,14 +543,14 @@
     <string>Reset</string>
    </property>
   </action>
-  <action name="actionRules">
+  <action name="actionHelp">
    <property name="icon">
     <iconset>
-     <normalon>:/assets/i_rules.png</normalon>
+     <normalon>:/assets/i_help.png</normalon>
     </iconset>
    </property>
    <property name="text">
-    <string>Rules...</string>
+    <string>Help...</string>
    </property>
   </action>
   <action name="actionReset_Universe">
