@@ -7,7 +7,7 @@
   - [Table of contents](#table-of-contents)
   - [Introduction](#introduction)
   - [Rules](#rules)
-  - [Control](#control)
+  - [Controls](#controls)
     - [Game Control](#game-control)
     - [Application](#application)
     - [Options](#options)
@@ -34,7 +34,7 @@ The universe of the Game of Life is an infinite, two-dimensional orthogonal grid
 The initial pattern constitutes the seed of the system. The first generation is created by applying the above rules simultaneously to every cell in the seed; births and deaths occur simultaneously, and the discrete moment at which this happens is sometimes called a tick. Each generation is a pure function of the preceding one. The rules continue to be applied repeatedly to create further generations. 
 
 
-## Control
+## Controls
 
 ### Game Control
 >**Left Click :** Fill a cell *(you can hold and move the mouse to fill multiple cell)*
