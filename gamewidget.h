@@ -62,6 +62,7 @@ public slots:
     const QTimer * getTimer();
     int getCell();
     QColor getColor();
+    QColor getColorDead();
     int getGenerations();
     QString dump();
     int getBornMin();
@@ -76,6 +77,7 @@ public slots:
     void setDump(const QString &data);
     void setModeBorn(int min,int max,bool b);
     void setModeStase(int min,int max,bool b);
+    void setDeadMode(bool b);
 
 private slots:
     void paintGrid(QPainter &p);
@@ -86,9 +88,12 @@ private:
     bool isAlive(int k, int j);
     QTimer * m_timer;
     QColor m_color;
+    QColor m_color_dead;
     int m_generations;
     bool* m_cell_map;
     bool* m_cell_map_next;
+    bool * m_cell_dead_map;
+    bool m_dead_mode;
     int m_cell;
     int m_born_min;
     int m_born_max;

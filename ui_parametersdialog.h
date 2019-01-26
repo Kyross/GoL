@@ -50,15 +50,20 @@ public:
     QPushButton *reset_timer_pushButton;
     QSpinBox *timer_spinBox;
     QSpacerItem *verticalSpacer;
+    QVBoxLayout *verticalLayout;
     QHBoxLayout *horizontalLayout_6;
     QLabel *label_3;
     QPushButton *reset_color_pushButton;
     QPushButton *colorpushButton;
+    QHBoxLayout *horizontalLayout_9;
+    QLabel *label_7;
+    QLabel *color_dead_label;
     QPushButton *reset_parameter_pushButton;
     QWidget *tab_2;
     QGridLayout *gridLayout_7;
     QPushButton *reset_mode_pushButton;
     QGridLayout *gridLayout_6;
+    QSpacerItem *verticalSpacer_10;
     QHBoxLayout *horizontalLayout_5;
     QCheckBox *born_checkBox;
     QSpinBox *born_min_spinBox;
@@ -69,8 +74,10 @@ public:
     QSpinBox *stase_min_spinBox;
     QLabel *label_6;
     QSpinBox *stase_max_spinBox;
-    QSpacerItem *verticalSpacer_10;
+    QHBoxLayout *horizontalLayout_2;
+    QCheckBox *dead_checkBox;
     QSpacerItem *verticalSpacer_11;
+    QSpacerItem *verticalSpacer_12;
     QSpacerItem *verticalSpacer_9;
     QWidget *tab_3;
     QGridLayout *gridLayout_5;
@@ -187,6 +194,8 @@ public:
 
         verticalLayout_4->addItem(verticalSpacer);
 
+        verticalLayout = new QVBoxLayout();
+        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         horizontalLayout_6 = new QHBoxLayout();
         horizontalLayout_6->setObjectName(QString::fromUtf8("horizontalLayout_6"));
         label_3 = new QLabel(tab);
@@ -214,7 +223,25 @@ public:
         horizontalLayout_6->addWidget(colorpushButton);
 
 
-        verticalLayout_4->addLayout(horizontalLayout_6);
+        verticalLayout->addLayout(horizontalLayout_6);
+
+
+        verticalLayout_4->addLayout(verticalLayout);
+
+        horizontalLayout_9 = new QHBoxLayout();
+        horizontalLayout_9->setObjectName(QString::fromUtf8("horizontalLayout_9"));
+        label_7 = new QLabel(tab);
+        label_7->setObjectName(QString::fromUtf8("label_7"));
+
+        horizontalLayout_9->addWidget(label_7);
+
+        color_dead_label = new QLabel(tab);
+        color_dead_label->setObjectName(QString::fromUtf8("color_dead_label"));
+
+        horizontalLayout_9->addWidget(color_dead_label);
+
+
+        verticalLayout_4->addLayout(horizontalLayout_9);
 
 
         gridLayout_3->addLayout(verticalLayout_4, 0, 0, 1, 1);
@@ -238,6 +265,10 @@ public:
 
         gridLayout_6 = new QGridLayout();
         gridLayout_6->setObjectName(QString::fromUtf8("gridLayout_6"));
+        verticalSpacer_10 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        gridLayout_6->addItem(verticalSpacer_10, 4, 0, 1, 1);
+
         horizontalLayout_5 = new QHBoxLayout();
         horizontalLayout_5->setObjectName(QString::fromUtf8("horizontalLayout_5"));
         born_checkBox = new QCheckBox(tab_2);
@@ -268,7 +299,7 @@ public:
         horizontalLayout_5->addWidget(born_max_spinBox);
 
 
-        gridLayout_6->addLayout(horizontalLayout_5, 2, 0, 1, 1);
+        gridLayout_6->addLayout(horizontalLayout_5, 3, 0, 1, 1);
 
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
@@ -300,15 +331,25 @@ public:
         horizontalLayout_3->addWidget(stase_max_spinBox);
 
 
-        gridLayout_6->addLayout(horizontalLayout_3, 4, 0, 1, 1);
+        gridLayout_6->addLayout(horizontalLayout_3, 5, 0, 1, 1);
 
-        verticalSpacer_10 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+        horizontalLayout_2 = new QHBoxLayout();
+        horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
+        dead_checkBox = new QCheckBox(tab_2);
+        dead_checkBox->setObjectName(QString::fromUtf8("dead_checkBox"));
 
-        gridLayout_6->addItem(verticalSpacer_10, 3, 0, 1, 1);
+        horizontalLayout_2->addWidget(dead_checkBox);
+
+
+        gridLayout_6->addLayout(horizontalLayout_2, 7, 0, 1, 1);
 
         verticalSpacer_11 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
-        gridLayout_6->addItem(verticalSpacer_11, 0, 0, 1, 1);
+        gridLayout_6->addItem(verticalSpacer_11, 1, 0, 1, 1);
+
+        verticalSpacer_12 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        gridLayout_6->addItem(verticalSpacer_12, 6, 0, 1, 1);
 
 
         gridLayout_7->addLayout(gridLayout_6, 0, 0, 1, 1);
@@ -411,7 +452,7 @@ public:
 
         retranslateUi(ParametersDialog);
 
-        tabWidget->setCurrentIndex(1);
+        tabWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(ParametersDialog);
@@ -439,6 +480,8 @@ public:
 #endif // QT_NO_TOOLTIP
         reset_color_pushButton->setText(QString());
         colorpushButton->setText(QString());
+        label_7->setText(QApplication::translate("ParametersDialog", "Dead Color", nullptr));
+        color_dead_label->setText(QString());
         reset_parameter_pushButton->setText(QApplication::translate("ParametersDialog", "Reset", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("ParametersDialog", "Parameters", nullptr));
         reset_mode_pushButton->setText(QApplication::translate("ParametersDialog", "Reset", nullptr));
@@ -450,6 +493,10 @@ public:
         stase_min_spinBox->setSuffix(QApplication::translate("ParametersDialog", " neighbour", nullptr));
         label_6->setText(QApplication::translate("ParametersDialog", "to", nullptr));
         stase_max_spinBox->setSuffix(QApplication::translate("ParametersDialog", " neighbour", nullptr));
+#ifndef QT_NO_TOOLTIP
+        dead_checkBox->setToolTip(QApplication::translate("ParametersDialog", "if a cell die no more cell can spawn on this spot", nullptr));
+#endif // QT_NO_TOOLTIP
+        dead_checkBox->setText(QApplication::translate("ParametersDialog", "Dead mode", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_2), QApplication::translate("ParametersDialog", "Game Mode", nullptr));
 #ifndef QT_NO_TOOLTIP
         label_4->setToolTip(QApplication::translate("ParametersDialog", "https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life#Examples_of_patterns", nullptr));

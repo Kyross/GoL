@@ -7,9 +7,7 @@ ParametersDialog::ParametersDialog(QWidget *parent) :
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint); //remove "?" on the top of the dialog box
     m_ui->setupUi(this);
     m_ui->warning_label->setVisible(false);
-    QPixmap icon(157, 16);
-    icon.fill("#000");
-    m_ui->colorpushButton->setIcon(QIcon(icon));
+
     //connect
     connect(m_ui->universe_spinBox,SIGNAL(valueChanged(int)),this,SLOT(universeSizeChanged(int)));
     connect(m_ui->timer_spinBox,SIGNAL(valueChanged(int)),this,SLOT(timerChanged(int)));
@@ -21,6 +19,7 @@ ParametersDialog::ParametersDialog(QWidget *parent) :
     connect(m_ui->stase_max_spinBox,SIGNAL(valueChanged(int)),this,SLOT(modeChanged()));
     connect(m_ui->born_checkBox,SIGNAL(toggled(bool)),this,SLOT(modeChanged()));
     connect(m_ui->stase_checkBox,SIGNAL(toggled(bool)),this,SLOT(modeChanged()));
+    connect(m_ui->dead_checkBox,SIGNAL(toggled(bool)),this,SLOT(modeChanged()));
 }
 
 

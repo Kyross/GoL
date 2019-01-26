@@ -72,6 +72,7 @@ Controller::Controller(QApplication *app,MainWindow *window, GameWidget *game, Q
     connect(m_params->m_ui->reset_universe_pushButton,SIGNAL(clicked()),this,SLOT(resetUniverse()));
     connect(m_params->m_ui->reset_color_pushButton,SIGNAL(clicked()),this,SLOT(resetColor()));
     connect(m_params->m_ui->reset_parameter_pushButton,SIGNAL(clicked()),this,SLOT(resetParams()));
+
     updateControl();
 }
 
@@ -127,6 +128,7 @@ void Controller::mode()
 {
     m_game->setModeBorn(m_params->m_ui->born_min_spinBox->value(),m_params->m_ui->born_max_spinBox->value(), m_params->m_ui->born_checkBox->isChecked());
     m_game->setModeStase(m_params->m_ui->stase_min_spinBox->value(),m_params->m_ui->stase_max_spinBox->value(), m_params->m_ui->stase_checkBox->isChecked());
+    m_game->setDeadMode(m_params->m_ui->dead_checkBox->isChecked());
     m_window->statusBar()->showMessage("Game mode changed",1000);
 }
 
@@ -134,8 +136,10 @@ void Controller::resetMode()
 {
     m_game->setModeBorn(m_game->DEFAULT_BORN_MIN,m_game->DEFAULT_BORN_MAX,true);
     m_game->setModeStase(m_game->DEFAULT_STASE_MIN,m_game->DEFAULT_STASE_MAX,true);
+    m_game->setDeadMode(false);
     m_params->m_ui->born_checkBox->setChecked(true);
     m_params->m_ui->stase_checkBox->setChecked(true);
+    m_params->m_ui->dead_checkBox->setChecked(false);
     m_params->m_ui->stase_min_spinBox->setValue(m_game->getStaseMin());
     m_params->m_ui->stase_max_spinBox->setValue(m_game->getStaseMax());
     m_params->m_ui->born_min_spinBox->setValue(m_game->getBornMin());
@@ -178,8 +182,9 @@ void Controller::load(QString filename)
     m_game->setColor(QColor(r,g,b)); // sets color of the dots
     QPixmap icon(157, 16); // icon on the button
     icon.fill(m_game->getColor()); // fill with new color
-
     m_params->m_ui->colorpushButton->setIcon(QIcon(icon));
+    icon.fill(m_game->getColorDead());
+    //m_params->m_ui->color_dead_pushButton->setIcon(QIcon(icon));
     in >> r; // r will be interval number
     m_window->m_ui->timer_SpinBox->setValue(r);
     m_window->m_ui->timer_slider->setValue(r);
@@ -244,6 +249,8 @@ void Controller::resetColor()
     QPixmap icon(157, 16);
     icon.fill(m_game->getColor());
     m_params->m_ui->colorpushButton->setIcon(QIcon(icon));
+    icon.fill(m_game->getColorDead());
+    //m_params->m_ui->color_dead_pushButton->setIcon(QIcon(icon));
     m_window->statusBar()->showMessage("Color reset",1000);
 }
 void Controller::setUniverseSize(int size)
@@ -285,9 +292,11 @@ void Controller::selectColor()
     if(!color.isValid())
         return;
     m_game->setColor(color);
-    QPixmap icon(175, 16);
+    QPixmap icon(157, 16);
     icon.fill(m_game->getColor());
     m_params->m_ui->colorpushButton->setIcon(QIcon(icon));
+    icon.fill(m_game->getColorDead());
+    //m_params->m_ui->color_dead_pushButton->setIcon(QIcon(icon));
 }
 
 void Controller::randomize(int r)
