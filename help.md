@@ -1,5 +1,5 @@
 # Help
-*01/26/2019* - [Wikipedia](https://en.wikipedia.org/wiki/Conway's_Game_of_Life)
+*01/26/2019* author Vincent Berthet - source [Wikipedia](https://en.wikipedia.org/wiki/Conway's_Game_of_Life)
 
 ## Table of contents
 
@@ -73,8 +73,9 @@ The initial pattern constitutes the seed of the system. The first generation is 
 
 #### Game mode
 You can edit the rules of the game to change the cell actions depending of their neighbourhood
-* Born 
-* Stase
+* Born condition
+* Stase condition
+* Dead body *(a cell cannot spawn if a cell has already died on this spot)*
 #### Demo
 You can find different kind of model to try the game
 * Random

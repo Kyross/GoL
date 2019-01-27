@@ -27,8 +27,6 @@ public slots:
     void pause();
     void clear();
     void newFile();
-    void open();
-    void load(QString);
     void save();
     void quit();
     void resetUniverse();
@@ -36,10 +34,9 @@ public slots:
     void end();
     void setUniverseSize(int size);
     void setTimer(int t);
-    void painted();
+    void painted(bool);
     void parameters();
     void selectColor();
-    void randomize(int r);
     void mode();
     void resetMode();
     void resetColor();

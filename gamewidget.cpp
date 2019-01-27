@@ -22,22 +22,29 @@ GameWidget::~GameWidget()
 {
     delete [] m_cell_map;
     delete [] m_cell_map_next;
+    delete [] m_cell_dead_map;
     delete m_timer;
 }
 
 void GameWidget::runGame()
 {
-    m_timer->start();
+    if(!isRunning()){
+        m_timer->start();
+        emit gameRunningSignal(isEmpty(), isRunning());
+     }
 }
 
 void GameWidget::stopGame()
 {
-    m_timer->stop();
-    emit gamePausedSignal();
+    if(isRunning()){
+        m_timer->stop();
+        emit gamePausedSignal(isEmpty(), isRunning());
+    }
 }
 
 void GameWidget::clearGame()
 {
+
     for(int k = 1; k <= m_cell; k++) {
         for(int j = 1; j <= m_cell; j++) {
             m_cell_map[k*m_cell + j] = false;
@@ -46,6 +53,7 @@ void GameWidget::clearGame()
     }
     m_generations=0;
     emit gameClearSignal();
+    emit gameRunningSignal(isEmpty(),isRunning());
 
     update();
 }
@@ -86,20 +94,15 @@ int GameWidget::getCell()
     return m_cell;
 }
 
-void GameWidget::resetCellSizeGame()
-{
-    m_cell=DEFAULT_VALUE_CELLS;
-    clearGame();
-    resetCellGame();
-    update();
-    emit gameCellSignal(DEFAULT_VALUE_CELLS);
-}
 void GameWidget::setCellSize(const int &s)
 {
-    if(s!=getCell())emit gameCellSignal(getCell());
-    m_cell = s;
-    resetCellGame();
-    update();
+    if(s!=getCell()){
+        m_cell = s;
+        resetCellGame();
+        update();
+        emit gameCellSignal(getCell());
+        emit gameRunningSignal(isEmpty(),isRunning());
+    }
 }
 
 void GameWidget::resetCellGame()
@@ -112,6 +115,7 @@ void GameWidget::resetCellGame()
     m_cell_dead_map = new bool[(m_cell + 2) * (m_cell + 2)]{false};
     memset(m_cell_map, false, sizeof(bool)*(m_cell + 2) * (m_cell + 2));
     memset(m_cell_map_next, false, sizeof(bool)*(m_cell + 2) * (m_cell + 2));
+    memset(m_cell_dead_map, false, sizeof(bool)*(m_cell + 2) * (m_cell + 2));
 }
 
 void GameWidget::randomizeGame(int r)
@@ -123,6 +127,7 @@ void GameWidget::randomizeGame(int r)
         }
     }
     update();
+    emit gameRunningSignal(isEmpty(),isRunning());
 }
 
 bool GameWidget::isRunning()
@@ -137,7 +142,10 @@ int GameWidget::getGenerations()
 
 void GameWidget::setInterval(int msec)
 {
-    m_timer->setInterval(msec);
+    if(msec != m_timer->interval()){
+        m_timer->setInterval(msec);
+        gameTimerSignal(msec);
+    }
 }
 
 void GameWidget::setModeBorn(int min,int max,bool b)
@@ -276,20 +284,20 @@ void GameWidget::mousePressEvent(QMouseEvent *e)
     }
 
     update();
-    emit gameEnvironmentChanged();
+    emit gameRunningSignal(isEmpty(), isRunning());
 }
 
 void GameWidget::mouseReleaseEvent(QMouseEvent *e)
 {
     Q_UNUSED(e);
-    emit gameEnvironmentChanged();
+    emit gameRunningSignal(isEmpty(), isRunning());
 }
 
 void GameWidget::mouseMoveEvent(QMouseEvent *e)
 {
     if(e->x()>=0 && e->x()<width() && e->y()>=0 && e->y()<height()){
         //not out of bounds of the grid
-        emit gameEnvironmentChanged();
+        emit gameRunningSignal(isEmpty(), isRunning());
         double cellWidth = (double)width()/m_cell;
         double cellHeight = (double)height()/m_cell;
         int k = floor(e->y()/cellHeight)+1;
@@ -361,6 +369,7 @@ void GameWidget::setColor(const QColor &color)
     m_color_dead=color;
     m_color_dead.setAlpha(90);
     update();
+    emit gameColorSignal(m_color,m_color_dead);
 }
 
 const QTimer * GameWidget::getTimer()
@@ -368,3 +377,55 @@ const QTimer * GameWidget::getTimer()
     return m_timer;
 }
 
+//Getter
+bool GameWidget::isBorn()
+{
+    return m_born_state;
+}
+
+bool GameWidget::isStase()
+{
+    return m_stase_state;
+}
+
+bool GameWidget::isDead()
+{
+    return m_dead_mode;
+}
+
+void GameWidget::loadGame(QString filename)
+{
+    if(filename.length() < 1)
+        return;
+    QFile file(filename);
+    if(!file.open(QIODevice::ReadOnly))
+        return;
+    QTextStream in(&file);
+    int sv;
+    in >> sv;
+    setCellSize(sv);
+    QString dump="";
+    for(int k=0; k != sv; k++) {
+        QString t;
+        in >> t;
+        dump.append(t+"\n");
+    }
+    clearGame();
+    setDump(dump);
+
+    int r,g,b; // RGB color
+    in >> r >> g >> b;
+    setColor(QColor(r,g,b)); // sets color of the dots
+    in >> r; // r will be interval number
+    setInterval(r);
+    gameRunningSignal(isEmpty(),isRunning());
+}
+
+void GameWidget::openGame()
+{
+    QString filename = QFileDialog::getOpenFileName(this,
+                                                    tr("Open saved game"),
+                                                    QDir::currentPath(),
+                                                    tr("life format (*.life)"));
+    loadGame(filename);
+}

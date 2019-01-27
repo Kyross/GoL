@@ -26,6 +26,7 @@ signals:
     void loadDemoSignal(QString);
     void randomizeModeSignal(int);
     void modeSignal();
+    void colorSignal();
 
 public slots:
     void universeSizeChanged(int size);
@@ -33,7 +34,27 @@ public slots:
     void loadDemo();
     void randomizeMode();
     void modeChanged();
+    void colorClicked();
+    void setParamsEnable(bool,bool);
 
+    //Getter
+    bool isBornChecked();
+    bool isStaseChecked();
+    bool isDeadChecked();
+    int getBornMin();
+    int getBornMax();
+    int getStaseMin();
+    int getStaseMax();
+
+    //Setter
+    void setBornChecked(bool);
+    void setStaseChecked(bool);
+    void setDeadChecked(bool);
+    void setBornMin(int);
+    void setBornMax(int);
+    void setStaseMin(int);
+    void setStaseMax(int);
+    void setColor(QColor,QColor);
 private:
 
 };

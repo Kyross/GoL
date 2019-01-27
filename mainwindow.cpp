@@ -164,21 +164,37 @@ void MainWindow::resetUniverseClicked()
 {
     emit resetUniverseClickedSignal();
 }
-//Parameters
+
 void MainWindow::universeSizeChanged(int size)
 {
     if(size!=m_ui->universe_spinBox->value() || size!=m_ui->universe_slider->value()){
-       emit universeSizeChangedSignal(size);
+        m_ui->universe_spinBox->setValue(size);
+        m_ui->universe_slider->setValue(size);
+        emit universeSizeChangedSignal(size);
     }
 }
 
 void MainWindow::timerChanged(int t)
 {
-    emit timerChangedSignal(t);
+    if(t!=m_ui->timer_SpinBox->value() || t!=m_ui->timer_SpinBox->value()){
+        m_ui->timer_SpinBox->setValue(t);
+        m_ui->timer_slider->setValue(t);
+        emit timerChangedSignal(t);
+    }
 }
 
 void MainWindow::parametersClicked()
 {
     emit parametersClickedSignal();
+}
+
+//Setter
+void MainWindow::setRunPause(bool e,bool r)
+{
+    m_ui->actionRun->setEnabled(!e && !r);
+    m_ui->actionPause->setEnabled(!e && r);
+    m_ui->actionClear_4->setEnabled(!e);
+    m_ui->actionReset_Universe->setEnabled(e);
+    if(!e) m_ui->actionNew->setEnabled(!e);
 }
 

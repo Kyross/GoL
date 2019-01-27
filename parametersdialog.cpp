@@ -20,6 +20,7 @@ ParametersDialog::ParametersDialog(QWidget *parent) :
     connect(m_ui->born_checkBox,SIGNAL(toggled(bool)),this,SLOT(modeChanged()));
     connect(m_ui->stase_checkBox,SIGNAL(toggled(bool)),this,SLOT(modeChanged()));
     connect(m_ui->dead_checkBox,SIGNAL(toggled(bool)),this,SLOT(modeChanged()));
+    connect(m_ui->colorpushButton,SIGNAL(clicked()),this,SLOT(colorClicked()));
 }
 
 
@@ -28,6 +29,87 @@ ParametersDialog::~ParametersDialog()
     delete m_ui;
 }
 
+//Getter
+bool ParametersDialog::isBornChecked()
+{
+    return m_ui->born_checkBox->isChecked();
+}
+
+bool ParametersDialog::isStaseChecked()
+{
+    return m_ui->stase_checkBox->isChecked();
+}
+
+bool ParametersDialog::isDeadChecked()
+{
+    return m_ui->dead_checkBox->isChecked();
+}
+
+int ParametersDialog::getBornMin()
+{
+    return m_ui->born_min_spinBox->value();
+}
+
+int ParametersDialog::getBornMax()
+{
+    return m_ui->born_max_spinBox->value();
+}
+
+int ParametersDialog::getStaseMin()
+{
+    return m_ui->stase_min_spinBox->value();
+}
+
+int ParametersDialog::getStaseMax()
+{
+    return m_ui->stase_max_spinBox->value();
+}
+
+//Setter
+void ParametersDialog::setBornChecked(bool b)
+{
+    m_ui->born_checkBox->setChecked(b);
+}
+
+void ParametersDialog::setStaseChecked(bool b)
+{
+    m_ui->stase_checkBox->setChecked(b);
+}
+
+void ParametersDialog::setDeadChecked(bool b)
+{
+    m_ui->dead_checkBox->setChecked(b);
+}
+
+void ParametersDialog::setBornMin(int min)
+{
+    m_ui->born_min_spinBox->setValue(min);
+}
+
+void ParametersDialog::setBornMax(int max)
+{
+    m_ui->born_max_spinBox->setValue(max);
+}
+
+void ParametersDialog::setStaseMin(int min)
+{
+    m_ui->stase_min_spinBox->setValue(min);
+}
+
+void ParametersDialog::setStaseMax(int max)
+{
+    m_ui->stase_max_spinBox->setValue(max);
+}
+
+void ParametersDialog::setColor(QColor color,QColor dead_color)
+{
+        qDebug()<<color;
+    QPixmap icon(157, 16);
+    icon.fill(color);
+    m_ui->colorpushButton->setIcon(QIcon(icon));
+}
+
+//Signals
 void ParametersDialog::modeChanged()
 {
     m_ui->born_min_spinBox->setEnabled(m_ui->born_checkBox->isChecked());
@@ -38,11 +120,13 @@ void ParametersDialog::modeChanged()
 }
 void ParametersDialog::universeSizeChanged(int size)
 {
+        m_ui->universe_spinBox->setValue(size);
         emit universeSizeChangedSignal(size);
 }
 
 void ParametersDialog::timerChanged(int time)
 {
+        m_ui->timer_spinBox->setValue(time);
         emit timerChangedSignal(time);
 }
 
@@ -67,4 +151,16 @@ void ParametersDialog::loadDemo()
 
 void ParametersDialog::randomizeMode(){
     emit randomizeModeSignal(m_ui->random_spinBox->value());
+}
+
+void ParametersDialog::colorClicked()
+{
+    emit colorSignal();
+}
+
+void ParametersDialog::setParamsEnable(bool e, bool r)
+{
+    m_ui->universe_spinBox->setEnabled(e);
+    m_ui->reset_universe_pushButton->setEnabled(e);
+    m_ui->warning_label->setVisible(!e);
 }

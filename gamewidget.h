@@ -11,6 +11,8 @@
 #include <QPainter>
 #include <qmath.h>
 #include <QDebug>
+#include <QString>
+#include <QFileDialog>
 
 class GameWidget : public QWidget
 {
@@ -38,22 +40,24 @@ protected:
     void mouseReleaseEvent(QMouseEvent *e);
 
 signals:
-    void gameEnvironmentChanged();
+    void gameRunningSignal(bool,bool);
+    void gamePausedSignal(bool,bool);
     void gameEnded();
-    void gamePausedSignal();
     void gameClearSignal();
     void gameCellSignal(int);
+    void gameTimerSignal(int);
     void gameGenerationSignal();
+    void gameColorSignal(QColor,QColor);
 
 public slots:
     //Action
     void runGame();
     void stopGame();
     void clearGame();
-    void resetCellSizeGame();
     void resetCellGame();
     void randomizeGame(int r);
-
+    void loadGame(QString filename);
+    void openGame();
     //State
     bool isEmpty();
     bool isRunning();
@@ -69,6 +73,9 @@ public slots:
     int getBornMax();
     int getStaseMin();
     int getStaseMax();
+    bool isBorn();
+    bool isStase();
+    bool isDead();
 
     //Setter
     void setCellSize(const int &s);

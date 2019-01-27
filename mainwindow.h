@@ -42,6 +42,7 @@ signals:
     void timerChangedSignal(int t);
     void parametersClickedSignal();
 
+
 public slots:
     void runClicked();
     void pauseClicked();
@@ -66,6 +67,8 @@ public slots:
     //About
     void aboutGolClicked();
     void helpClicked();
+    //Setter
+    void setRunPause(bool,bool);
 
 private:
     QLabel m_status;
