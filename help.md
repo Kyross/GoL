@@ -1,6 +1,7 @@
 # Help
 *01/26/2019* author Vincent Berthet - source [Wikipedia](https://en.wikipedia.org/wiki/Conway's_Game_of_Life)
 
+[GitLab project](https://gitlab.com/Kyross/game_of_life)
 ## Table of contents
 
 - [Help](#help)
