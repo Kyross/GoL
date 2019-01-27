@@ -3,7 +3,8 @@
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     m_ui(new Ui::MainWindow),
-    m_status("")
+    m_status(""),
+    m_aboutBox(new aboutBox())
 {
     m_ui->setupUi(this);
     statusBar()->addWidget(&m_status);
@@ -29,6 +30,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(m_ui->actionAbout,SIGNAL(triggered()),this,SLOT(aboutGolClicked()));
     connect(m_ui->actionParameters_2,SIGNAL(triggered()),this,SLOT(parametersClicked()));
     connect(m_ui->actionHelp,SIGNAL(triggered()),this,SLOT(helpClicked()));
+    connect(m_ui->actionReset_Color,SIGNAL(triggered()),this,SLOT(resetColorClicked()));
 }
 
 MainWindow::~MainWindow()
@@ -98,7 +100,9 @@ void MainWindow::hideParameters(bool hide)
 }
 
 void MainWindow::aboutGolClicked(){
-   new aboutBox();
+   //new aboutBox();
+    m_aboutBox.hide();
+    m_aboutBox.show();
 }
 
 void MainWindow::helpClicked(){
@@ -160,9 +164,21 @@ void MainWindow::resetTimerClicked()
     emit resetTimerClickedSignal();
 }
 
+void MainWindow::resetColorClicked()
+{
+    emit resetColorClickedSignal();
+}
+
 void MainWindow::resetUniverseClicked()
 {
     emit resetUniverseClickedSignal();
+}
+
+void MainWindow::setParamsEnable(bool e, bool r)
+{
+    Q_UNUSED(r);
+    m_ui->universe_spinBox->setEnabled(e);
+    m_ui->universe_slider->setEnabled(e);
 }
 
 void MainWindow::universeSizeChanged(int size)
@@ -176,7 +192,7 @@ void MainWindow::universeSizeChanged(int size)
 
 void MainWindow::timerChanged(int t)
 {
-    if(t!=m_ui->timer_SpinBox->value() || t!=m_ui->timer_SpinBox->value()){
+    if(t!=m_ui->timer_SpinBox->value() || t!=m_ui->timer_slider->value()){
         m_ui->timer_SpinBox->setValue(t);
         m_ui->timer_slider->setValue(t);
         emit timerChangedSignal(t);
@@ -198,3 +214,10 @@ void MainWindow::setRunPause(bool e,bool r)
     if(!e) m_ui->actionNew->setEnabled(!e);
 }
 
+void MainWindow::initRange(int min_u,int max_u, int min_t, int max_t)
+{
+    m_ui->universe_spinBox->setRange(min_u,max_u);
+    m_ui->universe_slider->setRange(min_u,max_u);
+    m_ui->timer_SpinBox->setRange(min_t,max_t);
+    m_ui->timer_slider->setRange(min_t,max_t);
+}

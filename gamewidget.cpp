@@ -26,6 +26,14 @@ GameWidget::~GameWidget()
     delete m_timer;
 }
 
+void GameWidget::resetMode()
+{
+    setModeBorn(DEFAULT_BORN_MIN,DEFAULT_BORN_MAX,DEFAULT_BORN_MODE);
+    setModeStase(DEFAULT_STASE_MIN,DEFAULT_STASE_MAX,DEFAULT_STASE_MODE);
+    if(isEmpty())setDeadMode(DEFAULT_DEAD_MODE);
+    emit gameModeSignal(isBorn(),isStase(),isDead(),getBornMin(),getBornMax(),getStaseMin(),getBornMax());
+}
+
 void GameWidget::runGame()
 {
     if(!isRunning()){
@@ -63,7 +71,7 @@ bool GameWidget::isEmpty()
 {
     for(int k = 1; k <= m_cell; k++) {
         for(int j = 1; j <= m_cell; j++) {
-            if(m_cell_map[k*m_cell + j] == true) return false;
+            if(m_cell_map[k*m_cell + j] == true || m_cell_dead_map[k*m_cell + j] == true ) return false;
         }
     }
     return true;
@@ -96,13 +104,11 @@ int GameWidget::getCell()
 
 void GameWidget::setCellSize(const int &s)
 {
-    if(s!=getCell()){
-        m_cell = s;
-        resetCellGame();
-        update();
-        emit gameCellSignal(getCell());
-        emit gameRunningSignal(isEmpty(),isRunning());
-    }
+    m_cell = s;
+    resetCellGame();
+    update();
+    emit gameCellSignal(getCell());
+    emit gameRunningSignal(isEmpty(),isRunning());
 }
 
 void GameWidget::resetCellGame()
@@ -150,21 +156,34 @@ void GameWidget::setInterval(int msec)
 
 void GameWidget::setModeBorn(int min,int max,bool b)
 {
-    m_born_min=min;
-    m_born_max=max;
-    m_born_state=b;
+   if(min>=0 && max <=8 && min<=max){
+        if(m_born_min!=min || m_born_max != max || m_born_state !=b){
+            m_born_min=min;
+            m_born_max=max;
+            m_born_state=b;
+            gameModeSignal(isBorn(),isStase(),isDead(),getBornMin(),getBornMax(),getStaseMin(),getStaseMax());
+        }
+   }
 }
 
 void GameWidget::setModeStase(int min,int max,bool b)
 {
-    m_stase_min=min;
-    m_stase_max=max;
-    m_stase_state=b;
+   if(min>=0 && max <=8 && min<=max){
+       if(m_stase_min!=min || m_stase_max != max || m_stase_state !=b){
+            m_stase_min=min;
+            m_stase_max=max;
+            m_stase_state=b;
+            gameModeSignal(isBorn(),isStase(),isDead(),getBornMin(),getBornMax(),getStaseMin(),getStaseMax());
+        }
+   }
 }
 
 void GameWidget::setDeadMode(bool b)
 {
-    m_dead_mode=b;
+    if(m_dead_mode != b){
+        m_dead_mode=b;
+        gameModeSignal(isBorn(),isStase(),isDead(),getBornMin(),getBornMax(),getStaseMin(),getStaseMax());
+    }
 }
 bool GameWidget::isAlive(int k, int j)
 {
@@ -219,6 +238,7 @@ void GameWidget::newGeneration()
                                  tr("All next generations will be the same."),
                                  QMessageBox::Ok);
         emit gameEnded();
+        emit gameRunningSignal(isEmpty(),isRunning());
         return;
     }
     for(int k=1; k <= m_cell; k++) {
@@ -418,6 +438,14 @@ void GameWidget::loadGame(QString filename)
     setColor(QColor(r,g,b)); // sets color of the dots
     in >> r; // r will be interval number
     setInterval(r);
+    int min,max;
+    QString state;
+    in>>min>>max>>state; //born
+    setModeBorn(min,max,state=="true"?true:false);
+    in>>min>>max>>state; //stase
+    setModeStase(min,max,state=="true"?true:false);
+    in>>state;
+    setDeadMode(state=="true"?true:false); //dead
     gameRunningSignal(isEmpty(),isRunning());
 }
 
@@ -428,4 +456,38 @@ void GameWidget::openGame()
                                                     QDir::currentPath(),
                                                     tr("life format (*.life)"));
     loadGame(filename);
+}
+
+void GameWidget::saveGame()
+{
+    QString filename = QFileDialog::getSaveFileName(this,
+                                                    tr("Save current game"),
+                                                    QDir::currentPath(),
+                                                    tr("*.life Files (*.life)"));
+    if(filename.length() < 1)
+        return;
+    QFile file(filename);
+    if(!file.open(QIODevice::WriteOnly | QIODevice::Truncate))
+        return;
+    QString s = QString::number(getCell())+"\n";
+    file.write(s.toUtf8());
+    file.write(dump().toUtf8());
+    QColor color = getColor();
+    QString buf = QString::number(color.red())+" "+
+                  QString::number(color.green())+" "+
+                  QString::number(color.blue())+"\n";
+    file.write(buf.toUtf8());
+    buf.clear();
+    buf = QString::number(getTimer()->interval())+"\n";
+    file.write(buf.toUtf8());
+    buf.clear();
+    buf = QString::number(getBornMin())+" "+QString::number(getBornMax())+" "+QString(isBorn() ? "true" : "false")+"\n";
+    file.write(buf.toUtf8());
+    buf.clear();
+    buf = QString::number(getStaseMin())+" "+QString::number(getStaseMax())+" "+QString(isStase() ? "true" : "false")+"\n";
+    file.write(buf.toUtf8());
+    buf.clear();
+    buf = QString(isDead() ? "true" : "false");
+    file.write(buf.toUtf8());
+    file.close();
 }

@@ -25,8 +25,8 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     void displayGame(GameWidget *game);
     void status(QString text);
+    void initRange(int,int,int,int);
     ~MainWindow();
-    Ui::MainWindow *m_ui;
 
 signals:
     void runClickedSignal();
@@ -41,6 +41,7 @@ signals:
     void universeSizeChangedSignal(int size);
     void timerChangedSignal(int t);
     void parametersClickedSignal();
+    void resetColorClickedSignal();
 
 
 public slots:
@@ -53,6 +54,7 @@ public slots:
     void quitClicked();
     void resetUniverseClicked();
     void resetTimerClicked();
+    void resetColorClicked();
     void parametersClicked();
     //changement couleur
     void universeSizeChanged(int size);
@@ -69,9 +71,12 @@ public slots:
     void helpClicked();
     //Setter
     void setRunPause(bool,bool);
+    void setParamsEnable(bool,bool);
 
 private:
+    Ui::MainWindow *m_ui;
     QLabel m_status;
+    aboutBox m_aboutBox;
 };
 
 #endif // MAINWINDOW_H

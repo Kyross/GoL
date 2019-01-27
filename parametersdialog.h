@@ -18,25 +18,35 @@ class ParametersDialog : public QDialog
 public:
     explicit ParametersDialog(QWidget *parent = nullptr);
     ~ParametersDialog();
-     Ui::ParametersDialog *m_ui;
-
+     void initRange(int,int,int,int);
 signals:
     void universeSizeChangedSignal(int);
     void timerChangedSignal(int);
     void loadDemoSignal(QString);
     void randomizeModeSignal(int);
-    void modeSignal();
+    void modeSignal(bool,bool,bool,int,int,int,int);
     void colorSignal();
+    void resetModeClickedSignal();
+    void resetTimerClickedSignal();
+    void resetUniverseClickedSignal();
+    void resetColorClickedSignal();
+    void resetParametersClickedSignal();
+    void clearClickedSignal();
 
 public slots:
     void universeSizeChanged(int size);
     void timerChanged(int time);
     void loadDemo();
     void randomizeMode();
-    void modeChanged();
     void colorClicked();
     void setParamsEnable(bool,bool);
-
+    void resetModeClicked();
+    void modeChanged();
+    void resetTimerClicked();
+    void resetUniverseClicked();
+    void resetColorClicked();
+    void resetParametersClicked();
+    void clearClicked();
     //Getter
     bool isBornChecked();
     bool isStaseChecked();
@@ -55,7 +65,9 @@ public slots:
     void setStaseMin(int);
     void setStaseMax(int);
     void setColor(QColor,QColor);
+    void setMode(bool,bool,bool,int,int,int,int);
 private:
+    Ui::ParametersDialog *m_ui;
 
 };
 

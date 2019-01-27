@@ -29,6 +29,9 @@ public:
     static const int DEFAULT_BORN_MAX=3;
     static const int DEFAULT_STASE_MIN=2;
     static const int DEFAULT_STASE_MAX=2;
+    static const bool DEFAULT_BORN_MODE=true;
+    static const bool DEFAULT_STASE_MODE=true;
+    static const bool DEFAULT_DEAD_MODE=false;
     const QColor DEFAULT_COLOR="#000";
 
     ~GameWidget();
@@ -48,6 +51,8 @@ signals:
     void gameTimerSignal(int);
     void gameGenerationSignal();
     void gameColorSignal(QColor,QColor);
+    void gameModeSignal(bool,bool,bool,int,int,int,int);
+    void gameFileEditedSignal();
 
 public slots:
     //Action
@@ -58,6 +63,8 @@ public slots:
     void randomizeGame(int r);
     void loadGame(QString filename);
     void openGame();
+    void resetMode();
+    void saveGame();
     //State
     bool isEmpty();
     bool isRunning();

@@ -6,7 +6,8 @@ ParametersDialog::ParametersDialog(QWidget *parent) :
 {
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint); //remove "?" on the top of the dialog box
     m_ui->setupUi(this);
-    m_ui->warning_label->setVisible(false);
+    m_ui->color_dead_pushButton->setStyleSheet("QPushButton::pressed{border : none;}");
+    this->setFixedSize(this->width(),this->height());
 
     //connect
     connect(m_ui->universe_spinBox,SIGNAL(valueChanged(int)),this,SLOT(universeSizeChanged(int)));
@@ -21,6 +22,13 @@ ParametersDialog::ParametersDialog(QWidget *parent) :
     connect(m_ui->stase_checkBox,SIGNAL(toggled(bool)),this,SLOT(modeChanged()));
     connect(m_ui->dead_checkBox,SIGNAL(toggled(bool)),this,SLOT(modeChanged()));
     connect(m_ui->colorpushButton,SIGNAL(clicked()),this,SLOT(colorClicked()));
+    connect(m_ui->reset_mode_pushButton,SIGNAL(clicked()),this,SLOT(resetModeClicked()));
+    connect(m_ui->reset_timer_pushButton,SIGNAL(clicked()),this,SLOT(resetTimerClicked()));
+    connect(m_ui->reset_universe_pushButton,SIGNAL(clicked()),this,SLOT(resetUniverseClicked()));
+    connect(m_ui->reset_color_pushButton,SIGNAL(clicked()),this,SLOT(resetColorClicked()));
+    connect(m_ui->reset_parameter_pushButton,SIGNAL(clicked()),this,SLOT(resetParametersClicked()));
+    connect(m_ui->clear_pushButton,SIGNAL(clicked()),this,SLOT(clearClicked()));
+    connect(m_ui->clear_mode_pushButton,SIGNAL(clicked()),this,SLOT(clearClicked()));
 }
 
 
@@ -103,20 +111,45 @@ void ParametersDialog::setStaseMax(int max)
 
 void ParametersDialog::setColor(QColor color,QColor dead_color)
 {
-        qDebug()<<color;
     QPixmap icon(157, 16);
     icon.fill(color);
     m_ui->colorpushButton->setIcon(QIcon(icon));
+    icon.fill(dead_color);
+    m_ui->color_dead_pushButton->setIcon(QIcon(icon));
 }
+void ParametersDialog::setMode(bool born,bool stase,bool dead,int min_born,int max_born,int min_stase,int max_stase)
+{
+    m_ui->born_checkBox->setChecked(born);
+    m_ui->stase_checkBox->setChecked(stase);
+    m_ui->dead_checkBox->setChecked(dead);
+    m_ui->born_min_spinBox->setEnabled(born);
+    m_ui->born_max_spinBox->setEnabled(born);
+    m_ui->stase_min_spinBox->setEnabled(stase);
+    m_ui->stase_max_spinBox->setEnabled(stase);
 
+    m_ui->born_min_spinBox->setValue(min_born);
+    m_ui->born_max_spinBox->setValue(max_born);
+    m_ui->stase_min_spinBox->setValue(min_stase);
+    m_ui->stase_max_spinBox->setValue(max_stase);
+
+    m_ui->born_min_spinBox->setRange(0,max_born);
+    m_ui->born_max_spinBox->setRange(min_born,8);
+    m_ui->stase_min_spinBox->setRange(0,max_stase);
+    m_ui->stase_max_spinBox->setRange(min_stase,8);
+}
 //Signals
 void ParametersDialog::modeChanged()
 {
-    m_ui->born_min_spinBox->setEnabled(m_ui->born_checkBox->isChecked());
-    m_ui->born_max_spinBox->setEnabled(m_ui->born_checkBox->isChecked());
-    m_ui->stase_min_spinBox->setEnabled(m_ui->stase_checkBox->isChecked());
-    m_ui->stase_max_spinBox->setEnabled(m_ui->stase_checkBox->isChecked());
-    emit modeSignal();
+    bool born=m_ui->born_checkBox->isChecked();
+    bool stase=m_ui->stase_checkBox->isChecked();
+    bool dead=m_ui->dead_checkBox->isChecked();
+
+    int min_born=m_ui->born_min_spinBox->value();
+    int max_born=m_ui->born_max_spinBox->value();
+    int min_stase=m_ui->stase_min_spinBox->value();
+    int max_stase=m_ui->stase_max_spinBox->value();
+
+    emit modeSignal(born,stase,dead,min_born,max_born,min_stase,max_stase);
 }
 void ParametersDialog::universeSizeChanged(int size)
 {
@@ -130,6 +163,10 @@ void ParametersDialog::timerChanged(int time)
         emit timerChangedSignal(time);
 }
 
+void ParametersDialog::resetModeClicked()
+{
+    emit resetModeClickedSignal();
+}
 void ParametersDialog::loadDemo()
 {
     QString filename;
@@ -160,7 +197,43 @@ void ParametersDialog::colorClicked()
 
 void ParametersDialog::setParamsEnable(bool e, bool r)
 {
+    Q_UNUSED(r);
     m_ui->universe_spinBox->setEnabled(e);
+    m_ui->clear_pushButton->setEnabled(!e);
     m_ui->reset_universe_pushButton->setEnabled(e);
+    m_ui->dead_checkBox->setEnabled(e);
     m_ui->warning_label->setVisible(!e);
+    m_ui->warning_mode_label->setVisible(!e);
+    m_ui->clear_mode_pushButton->setVisible(!e);
+}
+
+void ParametersDialog::resetTimerClicked()
+{
+    emit resetTimerClickedSignal();
+}
+
+void ParametersDialog::resetUniverseClicked()
+{
+    emit resetUniverseClickedSignal();
+}
+
+void ParametersDialog::resetColorClicked()
+{
+    emit resetColorClickedSignal();
+}
+
+void ParametersDialog::resetParametersClicked()
+{
+    emit resetParametersClickedSignal();
+}
+
+void ParametersDialog::clearClicked()
+{
+    emit clearClickedSignal();
+}
+
+void ParametersDialog::initRange(int min_u,int max_u, int min_t, int max_t)
+{
+    m_ui->universe_spinBox->setRange(min_u,max_u);
+    m_ui->timer_spinBox->setRange(min_t,max_t);
 }

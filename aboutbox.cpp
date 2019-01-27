@@ -6,7 +6,6 @@ aboutBox::aboutBox(QWidget *parent) :
 {
     setWindowFlags(windowFlags() & ~Qt::WindowContextHelpButtonHint); //remove "?" on the top of the dialog box
     ui->setupUi(this);
-    this->show();
     connect(ui->close_pushButton,SIGNAL(clicked()),this,SLOT(close()));
 }
 
@@ -17,5 +16,5 @@ aboutBox::~aboutBox()
 
 void aboutBox::close()
 {
-   this->destroy();
+   this->hide();
 }

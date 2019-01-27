@@ -34,16 +34,14 @@ public slots:
     void end();
     void setUniverseSize(int size);
     void setTimer(int t);
-    void painted(bool);
+    void painted(bool,bool);
     void parameters();
     void selectColor();
-    void mode();
-    void resetMode();
+    void mode(bool,bool,bool,int,int,int,int);
     void resetColor();
     void resetParams();
 
  private :
-    void updateControl();
     QApplication *m_application;
     MainWindow *m_window;
     GameWidget *m_game;
