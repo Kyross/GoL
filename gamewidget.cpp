@@ -102,7 +102,7 @@ int GameWidget::getCell()
     return m_cell;
 }
 
-void GameWidget::setCellSize(const int &s)
+void GameWidget::setCellSize(const int s)
 {
     m_cell = s;
     resetCellGame();

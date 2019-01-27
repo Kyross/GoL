@@ -85,7 +85,7 @@ public slots:
     bool isDead();
 
     //Setter
-    void setCellSize(const int &s);
+    void setCellSize(const int s);
     void setInterval(int msec);
     void setColor(const QColor &color);
     void setDump(const QString &data);
