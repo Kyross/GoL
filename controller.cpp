@@ -47,7 +47,7 @@ Controller::Controller(QApplication *app,MainWindow *window, GameWidget *game, Q
     connect(m_game,SIGNAL(gameTimerSignal(int)),m_params,SLOT(timerChanged(int)));
     //*** game
     connect(m_game,SIGNAL(gameEnded()),this,SLOT(end()));
-    connect(m_game,SIGNAL(gameGenerationSignal()),this,SLOT(run()));
+    connect(m_game,SIGNAL(gameGenerationSignal(int)),this,SLOT(run()));
     //***parameters
     connect(m_window,SIGNAL(resetColorClickedSignal()),this,SLOT(resetColor()));
     connect(m_window,SIGNAL(parametersClickedSignal()),this,SLOT(parameters()));
@@ -65,7 +65,9 @@ Controller::Controller(QApplication *app,MainWindow *window, GameWidget *game, Q
     connect(m_params,SIGNAL(resetModeClickedSignal()),m_game,SLOT(resetMode()));
     connect(m_game,SIGNAL(gameModeSignal(bool,bool,bool,int,int,int,int)),m_params,SLOT(setMode(bool,bool,bool,int,int,int,int)));
     connect(m_params,SIGNAL(modeSignal(bool,bool,bool,int,int,int,int)),this,SLOT(mode(bool,bool,bool,int,int,int,int)));
-
+    //**data
+    connect(m_game,SIGNAL(gameCellAliveSignal(int)),m_window,SLOT(setDataCellAlive(int)));
+    connect(m_game,SIGNAL(gameGenerationSignal(int)),m_window,SLOT(setDataGenerations(int)));
     //Inits with default value
     newFile();
     m_window->status("");
@@ -77,9 +79,6 @@ void Controller::run()
         m_game->runGame();
     }
     m_window->status("Game is running : "+QString::number(m_game->getGenerations())+" generations");
-    m_window->setDataGenerations(m_game->getGenerations());
-    m_window->setDataCellAlive(m_game->getCellAlive());
-
 }
 
 void Controller::pause()
@@ -97,9 +96,9 @@ void Controller::end()
 void Controller::clear()
 {
     m_game->stopGame();
+    m_window->setDataGenerations(m_game->getGenerations());
     if(!m_game->isEmpty()){
         m_game->clearGame();
-        m_window->setDataGenerations(m_game->getGenerations());
         m_window->status("");
         m_window->statusBar()->showMessage("Clear done",1000);
     }
@@ -115,7 +114,6 @@ void Controller::newFile()
     m_window->status("");
     m_window->statusBar()->showMessage("New File done",1000);
     m_window->setDataGenerations(m_game->getGenerations());
-    m_window->setDataCellAlive(m_game->getCellAlive());
 }
 
 void Controller::mode(bool born,bool stase,bool dead,int min_born,int max_born,int min_stase,int max_stase)
@@ -182,7 +180,6 @@ void Controller::painted(bool e,bool r)
     Q_UNUSED(e);
     m_window->statusBar()->showMessage("Painting",1000);
     if(!r) m_window->status("Game is ready");
-    m_window->setDataCellAlive(m_game->getCellAlive());
 }
 
 void Controller::parameters()

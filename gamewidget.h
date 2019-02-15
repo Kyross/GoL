@@ -49,10 +49,11 @@ signals:
     void gameClearSignal();
     void gameCellSignal(int);
     void gameTimerSignal(int);
-    void gameGenerationSignal();
+    void gameGenerationSignal(int);
     void gameColorSignal(QColor,QColor);
     void gameModeSignal(bool,bool,bool,int,int,int,int);
     void gameFileEditedSignal();
+    void gameCellAliveSignal(int);
 
 public slots:
     //Action

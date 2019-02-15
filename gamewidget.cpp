@@ -216,7 +216,7 @@ bool GameWidget::isAlive(int k, int j)
 void GameWidget::newGeneration()
 {
     m_generations++;
-    emit gameGenerationSignal();
+    emit gameGenerationSignal(m_generations);
 
     int notChanged=0;
     for(int k=1; k <= m_cell; k++) {
@@ -295,6 +295,7 @@ void GameWidget::paintEvent(QPaintEvent *)
     QPainter p(this);
     paintGrid(p);
     paintCell(p);
+    emit gameCellAliveSignal(getCellAlive());
 }
 
 void GameWidget::mousePressEvent(QMouseEvent *e)
