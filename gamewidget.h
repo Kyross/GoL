@@ -83,6 +83,7 @@ public slots:
     bool isBorn();
     bool isStase();
     bool isDead();
+    int getCellAlive();
 
     //Setter
     void setCellSize(const int s);

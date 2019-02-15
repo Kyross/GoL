@@ -77,6 +77,9 @@ void Controller::run()
         m_game->runGame();
     }
     m_window->status("Game is running : "+QString::number(m_game->getGenerations())+" generations");
+    m_window->setDataGenerations(m_game->getGenerations());
+    m_window->setDataCellAlive(m_game->getCellAlive());
+
 }
 
 void Controller::pause()
@@ -96,6 +99,7 @@ void Controller::clear()
     m_game->stopGame();
     if(!m_game->isEmpty()){
         m_game->clearGame();
+        m_window->setDataGenerations(m_game->getGenerations());
         m_window->status("");
         m_window->statusBar()->showMessage("Clear done",1000);
     }
@@ -110,6 +114,8 @@ void Controller::newFile()
     m_game->resetMode();
     m_window->status("");
     m_window->statusBar()->showMessage("New File done",1000);
+    m_window->setDataGenerations(m_game->getGenerations());
+    m_window->setDataCellAlive(m_game->getCellAlive());
 }
 
 void Controller::mode(bool born,bool stase,bool dead,int min_born,int max_born,int min_stase,int max_stase)
@@ -176,6 +182,7 @@ void Controller::painted(bool e,bool r)
     Q_UNUSED(e);
     m_window->statusBar()->showMessage("Painting",1000);
     if(!r) m_window->status("Game is ready");
+    m_window->setDataCellAlive(m_game->getCellAlive());
 }
 
 void Controller::parameters()

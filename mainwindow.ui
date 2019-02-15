@@ -23,7 +23,7 @@
     <item row="0" column="0">
      <layout class="QVBoxLayout" name="main_layout">
       <item>
-       <layout class="QVBoxLayout" name="params_layout">
+       <layout class="QHBoxLayout" name="horizontalLayout">
         <item>
          <widget class="QGroupBox" name="groupBox_params">
           <property name="maximumSize">
@@ -242,6 +242,87 @@
           </layout>
          </widget>
         </item>
+        <item>
+         <widget class="QGroupBox" name="groupBox_data">
+          <property name="minimumSize">
+           <size>
+            <width>117</width>
+            <height>0</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>16777215</width>
+            <height>100</height>
+           </size>
+          </property>
+          <property name="title">
+           <string>Data</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_4">
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_3">
+             <item>
+              <widget class="QLabel" name="label_4">
+               <property name="minimumSize">
+                <size>
+                 <width>75</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>75</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>Cells alive   </string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="label_cellAlive">
+               <property name="text">
+                <string>0</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_2">
+             <item>
+              <widget class="QLabel" name="label_2">
+               <property name="minimumSize">
+                <size>
+                 <width>75</width>
+                 <height>0</height>
+                </size>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>75</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="text">
+                <string>Generations </string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="label_cellGenerations">
+               <property name="text">
+                <string>0</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+          </layout>
+         </widget>
+        </item>
        </layout>
       </item>
       <item>
@@ -270,7 +351,7 @@
      <x>0</x>
      <y>0</y>
      <width>626</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -305,6 +386,7 @@
     <addaction name="separator"/>
     <addaction name="actionHide_toolbar"/>
     <addaction name="actionHide_parameters"/>
+    <addaction name="actionHide_data"/>
    </widget>
    <widget class="QMenu" name="menuAbout">
     <property name="title">
@@ -650,6 +732,14 @@
    </property>
    <property name="shortcut">
     <string>Ctrl+C</string>
+   </property>
+  </action>
+  <action name="actionHide_data">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Hide data</string>
    </property>
   </action>
  </widget>

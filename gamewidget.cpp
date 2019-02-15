@@ -102,6 +102,16 @@ int GameWidget::getCell()
     return m_cell;
 }
 
+int GameWidget::getCellAlive()
+{
+    int alive=0;
+    for(int k = 1; k <= m_cell; k++) {
+        for(int j = 1; j <= m_cell; j++) {
+            if(m_cell_map[k*m_cell + j] == true || m_cell_dead_map[k*m_cell + j] == true ) alive++;
+        }
+    }
+    return alive;
+}
 void GameWidget::setCellSize(const int s)
 {
     m_cell = s;
@@ -338,17 +348,24 @@ void GameWidget::mouseMoveEvent(QMouseEvent *e)
 
 void GameWidget::paintGrid(QPainter &p)
 {
+    double cellWidth = (double)width()/m_cell;
+    double cellHeight = (double)height()/m_cell;
+    //bg
+    QColor bgColor="#fff";
+    QRectF r(0, 0, m_cell*cellWidth, m_cell*cellHeight);
+    p.fillRect(r, QBrush(bgColor)); // fill cell with brush of main color
+
+    //grid
     QRect borders(0, 0, width()-1, height()-1); // borders of the universe
     QColor gridColor = "#000"; // color of the grid
     gridColor.setAlpha(40); // must be lighter than main color
     p.setPen(gridColor);
-    double cellWidth = (double)width()/m_cell; // width of the widget / number of cells at one row
     for(double k = cellWidth; k <= width(); k += cellWidth)
         p.drawLine(k, 0, k, height());
-    double cellHeight = (double)height()/m_cell; // height of the widget / number of cells at one row
     for(double k = cellHeight; k <= height(); k += cellHeight)
         p.drawLine(0, k, width(), k);
     p.drawRect(borders);
+
 }
 
 void GameWidget::paintCell(QPainter &p)

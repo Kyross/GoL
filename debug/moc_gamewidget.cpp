@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'gamewidget.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.12.0)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.12.1)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -12,7 +12,7 @@
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'gamewidget.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.12.0. It"
+#error "This file was generated using the moc from 5.12.1. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_GameWidget_t {
-    QByteArrayData data[58];
-    char stringdata0[591];
+    QByteArrayData data[59];
+    char stringdata0[604];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -70,25 +70,26 @@ QT_MOC_LITERAL(35, 405, 11), // "getStaseMax"
 QT_MOC_LITERAL(36, 417, 6), // "isBorn"
 QT_MOC_LITERAL(37, 424, 7), // "isStase"
 QT_MOC_LITERAL(38, 432, 6), // "isDead"
-QT_MOC_LITERAL(39, 439, 11), // "setCellSize"
-QT_MOC_LITERAL(40, 451, 1), // "s"
-QT_MOC_LITERAL(41, 453, 11), // "setInterval"
-QT_MOC_LITERAL(42, 465, 4), // "msec"
-QT_MOC_LITERAL(43, 470, 8), // "setColor"
-QT_MOC_LITERAL(44, 479, 5), // "color"
-QT_MOC_LITERAL(45, 485, 7), // "setDump"
-QT_MOC_LITERAL(46, 493, 4), // "data"
-QT_MOC_LITERAL(47, 498, 11), // "setModeBorn"
-QT_MOC_LITERAL(48, 510, 3), // "min"
-QT_MOC_LITERAL(49, 514, 3), // "max"
-QT_MOC_LITERAL(50, 518, 1), // "b"
-QT_MOC_LITERAL(51, 520, 12), // "setModeStase"
-QT_MOC_LITERAL(52, 533, 11), // "setDeadMode"
-QT_MOC_LITERAL(53, 545, 9), // "paintGrid"
-QT_MOC_LITERAL(54, 555, 9), // "QPainter&"
-QT_MOC_LITERAL(55, 565, 1), // "p"
-QT_MOC_LITERAL(56, 567, 9), // "paintCell"
-QT_MOC_LITERAL(57, 577, 13) // "newGeneration"
+QT_MOC_LITERAL(39, 439, 12), // "getCellAlive"
+QT_MOC_LITERAL(40, 452, 11), // "setCellSize"
+QT_MOC_LITERAL(41, 464, 1), // "s"
+QT_MOC_LITERAL(42, 466, 11), // "setInterval"
+QT_MOC_LITERAL(43, 478, 4), // "msec"
+QT_MOC_LITERAL(44, 483, 8), // "setColor"
+QT_MOC_LITERAL(45, 492, 5), // "color"
+QT_MOC_LITERAL(46, 498, 7), // "setDump"
+QT_MOC_LITERAL(47, 506, 4), // "data"
+QT_MOC_LITERAL(48, 511, 11), // "setModeBorn"
+QT_MOC_LITERAL(49, 523, 3), // "min"
+QT_MOC_LITERAL(50, 527, 3), // "max"
+QT_MOC_LITERAL(51, 531, 1), // "b"
+QT_MOC_LITERAL(52, 533, 12), // "setModeStase"
+QT_MOC_LITERAL(53, 546, 11), // "setDeadMode"
+QT_MOC_LITERAL(54, 558, 9), // "paintGrid"
+QT_MOC_LITERAL(55, 568, 9), // "QPainter&"
+QT_MOC_LITERAL(56, 578, 1), // "p"
+QT_MOC_LITERAL(57, 580, 9), // "paintCell"
+QT_MOC_LITERAL(58, 590, 13) // "newGeneration"
 
     },
     "GameWidget\0gameRunningSignal\0\0"
@@ -103,11 +104,11 @@ QT_MOC_LITERAL(57, 577, 13) // "newGeneration"
     "getCell\0getColor\0getColorDead\0"
     "getGenerations\0dump\0getBornMin\0"
     "getBornMax\0getStaseMin\0getStaseMax\0"
-    "isBorn\0isStase\0isDead\0setCellSize\0s\0"
-    "setInterval\0msec\0setColor\0color\0setDump\0"
-    "data\0setModeBorn\0min\0max\0b\0setModeStase\0"
-    "setDeadMode\0paintGrid\0QPainter&\0p\0"
-    "paintCell\0newGeneration"
+    "isBorn\0isStase\0isDead\0getCellAlive\0"
+    "setCellSize\0s\0setInterval\0msec\0setColor\0"
+    "color\0setDump\0data\0setModeBorn\0min\0"
+    "max\0b\0setModeStase\0setDeadMode\0paintGrid\0"
+    "QPainter&\0p\0paintCell\0newGeneration"
 };
 #undef QT_MOC_LITERAL
 
@@ -117,7 +118,7 @@ static const uint qt_meta_data_GameWidget[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-      44,   14, // methods
+      45,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -125,52 +126,53 @@ static const uint qt_meta_data_GameWidget[] = {
       10,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    2,  234,    2, 0x06 /* Public */,
-       3,    2,  239,    2, 0x06 /* Public */,
-       4,    0,  244,    2, 0x06 /* Public */,
-       5,    0,  245,    2, 0x06 /* Public */,
-       6,    1,  246,    2, 0x06 /* Public */,
-       7,    1,  249,    2, 0x06 /* Public */,
-       8,    0,  252,    2, 0x06 /* Public */,
-       9,    2,  253,    2, 0x06 /* Public */,
-      10,    7,  258,    2, 0x06 /* Public */,
-      11,    0,  273,    2, 0x06 /* Public */,
+       1,    2,  239,    2, 0x06 /* Public */,
+       3,    2,  244,    2, 0x06 /* Public */,
+       4,    0,  249,    2, 0x06 /* Public */,
+       5,    0,  250,    2, 0x06 /* Public */,
+       6,    1,  251,    2, 0x06 /* Public */,
+       7,    1,  254,    2, 0x06 /* Public */,
+       8,    0,  257,    2, 0x06 /* Public */,
+       9,    2,  258,    2, 0x06 /* Public */,
+      10,    7,  263,    2, 0x06 /* Public */,
+      11,    0,  278,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-      12,    0,  274,    2, 0x0a /* Public */,
-      13,    0,  275,    2, 0x0a /* Public */,
-      14,    0,  276,    2, 0x0a /* Public */,
-      15,    0,  277,    2, 0x0a /* Public */,
-      16,    1,  278,    2, 0x0a /* Public */,
-      18,    1,  281,    2, 0x0a /* Public */,
-      20,    0,  284,    2, 0x0a /* Public */,
-      21,    0,  285,    2, 0x0a /* Public */,
-      22,    0,  286,    2, 0x0a /* Public */,
-      23,    0,  287,    2, 0x0a /* Public */,
-      24,    0,  288,    2, 0x0a /* Public */,
-      25,    0,  289,    2, 0x0a /* Public */,
-      27,    0,  290,    2, 0x0a /* Public */,
-      28,    0,  291,    2, 0x0a /* Public */,
-      29,    0,  292,    2, 0x0a /* Public */,
-      30,    0,  293,    2, 0x0a /* Public */,
-      31,    0,  294,    2, 0x0a /* Public */,
-      32,    0,  295,    2, 0x0a /* Public */,
-      33,    0,  296,    2, 0x0a /* Public */,
-      34,    0,  297,    2, 0x0a /* Public */,
-      35,    0,  298,    2, 0x0a /* Public */,
-      36,    0,  299,    2, 0x0a /* Public */,
-      37,    0,  300,    2, 0x0a /* Public */,
-      38,    0,  301,    2, 0x0a /* Public */,
-      39,    1,  302,    2, 0x0a /* Public */,
-      41,    1,  305,    2, 0x0a /* Public */,
-      43,    1,  308,    2, 0x0a /* Public */,
-      45,    1,  311,    2, 0x0a /* Public */,
-      47,    3,  314,    2, 0x0a /* Public */,
-      51,    3,  321,    2, 0x0a /* Public */,
-      52,    1,  328,    2, 0x0a /* Public */,
-      53,    1,  331,    2, 0x08 /* Private */,
-      56,    1,  334,    2, 0x08 /* Private */,
-      57,    0,  337,    2, 0x08 /* Private */,
+      12,    0,  279,    2, 0x0a /* Public */,
+      13,    0,  280,    2, 0x0a /* Public */,
+      14,    0,  281,    2, 0x0a /* Public */,
+      15,    0,  282,    2, 0x0a /* Public */,
+      16,    1,  283,    2, 0x0a /* Public */,
+      18,    1,  286,    2, 0x0a /* Public */,
+      20,    0,  289,    2, 0x0a /* Public */,
+      21,    0,  290,    2, 0x0a /* Public */,
+      22,    0,  291,    2, 0x0a /* Public */,
+      23,    0,  292,    2, 0x0a /* Public */,
+      24,    0,  293,    2, 0x0a /* Public */,
+      25,    0,  294,    2, 0x0a /* Public */,
+      27,    0,  295,    2, 0x0a /* Public */,
+      28,    0,  296,    2, 0x0a /* Public */,
+      29,    0,  297,    2, 0x0a /* Public */,
+      30,    0,  298,    2, 0x0a /* Public */,
+      31,    0,  299,    2, 0x0a /* Public */,
+      32,    0,  300,    2, 0x0a /* Public */,
+      33,    0,  301,    2, 0x0a /* Public */,
+      34,    0,  302,    2, 0x0a /* Public */,
+      35,    0,  303,    2, 0x0a /* Public */,
+      36,    0,  304,    2, 0x0a /* Public */,
+      37,    0,  305,    2, 0x0a /* Public */,
+      38,    0,  306,    2, 0x0a /* Public */,
+      39,    0,  307,    2, 0x0a /* Public */,
+      40,    1,  308,    2, 0x0a /* Public */,
+      42,    1,  311,    2, 0x0a /* Public */,
+      44,    1,  314,    2, 0x0a /* Public */,
+      46,    1,  317,    2, 0x0a /* Public */,
+      48,    3,  320,    2, 0x0a /* Public */,
+      52,    3,  327,    2, 0x0a /* Public */,
+      53,    1,  334,    2, 0x0a /* Public */,
+      54,    1,  337,    2, 0x08 /* Private */,
+      57,    1,  340,    2, 0x08 /* Private */,
+      58,    0,  343,    2, 0x08 /* Private */,
 
  // signals: parameters
     QMetaType::Void, QMetaType::Bool, QMetaType::Bool,    2,    2,
@@ -209,15 +211,16 @@ static const uint qt_meta_data_GameWidget[] = {
     QMetaType::Bool,
     QMetaType::Bool,
     QMetaType::Bool,
-    QMetaType::Void, QMetaType::Int,   40,
-    QMetaType::Void, QMetaType::Int,   42,
-    QMetaType::Void, QMetaType::QColor,   44,
-    QMetaType::Void, QMetaType::QString,   46,
-    QMetaType::Void, QMetaType::Int, QMetaType::Int, QMetaType::Bool,   48,   49,   50,
-    QMetaType::Void, QMetaType::Int, QMetaType::Int, QMetaType::Bool,   48,   49,   50,
-    QMetaType::Void, QMetaType::Bool,   50,
-    QMetaType::Void, 0x80000000 | 54,   55,
-    QMetaType::Void, 0x80000000 | 54,   55,
+    QMetaType::Int,
+    QMetaType::Void, QMetaType::Int,   41,
+    QMetaType::Void, QMetaType::Int,   43,
+    QMetaType::Void, QMetaType::QColor,   45,
+    QMetaType::Void, QMetaType::QString,   47,
+    QMetaType::Void, QMetaType::Int, QMetaType::Int, QMetaType::Bool,   49,   50,   51,
+    QMetaType::Void, QMetaType::Int, QMetaType::Int, QMetaType::Bool,   49,   50,   51,
+    QMetaType::Void, QMetaType::Bool,   51,
+    QMetaType::Void, 0x80000000 | 55,   56,
+    QMetaType::Void, 0x80000000 | 55,   56,
     QMetaType::Void,
 
        0        // eod
@@ -226,7 +229,7 @@ static const uint qt_meta_data_GameWidget[] = {
 void GameWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
-        GameWidget *_t = static_cast<GameWidget *>(_o);
+        auto *_t = static_cast<GameWidget *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->gameRunningSignal((*reinterpret_cast< bool(*)>(_a[1])),(*reinterpret_cast< bool(*)>(_a[2]))); break;
@@ -278,16 +281,18 @@ void GameWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
             if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
         case 33: { bool _r = _t->isDead();
             if (_a[0]) *reinterpret_cast< bool*>(_a[0]) = std::move(_r); }  break;
-        case 34: _t->setCellSize((*reinterpret_cast< const int(*)>(_a[1]))); break;
-        case 35: _t->setInterval((*reinterpret_cast< int(*)>(_a[1]))); break;
-        case 36: _t->setColor((*reinterpret_cast< const QColor(*)>(_a[1]))); break;
-        case 37: _t->setDump((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 38: _t->setModeBorn((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< bool(*)>(_a[3]))); break;
-        case 39: _t->setModeStase((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< bool(*)>(_a[3]))); break;
-        case 40: _t->setDeadMode((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 41: _t->paintGrid((*reinterpret_cast< QPainter(*)>(_a[1]))); break;
-        case 42: _t->paintCell((*reinterpret_cast< QPainter(*)>(_a[1]))); break;
-        case 43: _t->newGeneration(); break;
+        case 34: { int _r = _t->getCellAlive();
+            if (_a[0]) *reinterpret_cast< int*>(_a[0]) = std::move(_r); }  break;
+        case 35: _t->setCellSize((*reinterpret_cast< const int(*)>(_a[1]))); break;
+        case 36: _t->setInterval((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 37: _t->setColor((*reinterpret_cast< const QColor(*)>(_a[1]))); break;
+        case 38: _t->setDump((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 39: _t->setModeBorn((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< bool(*)>(_a[3]))); break;
+        case 40: _t->setModeStase((*reinterpret_cast< int(*)>(_a[1])),(*reinterpret_cast< int(*)>(_a[2])),(*reinterpret_cast< bool(*)>(_a[3]))); break;
+        case 41: _t->setDeadMode((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 42: _t->paintGrid((*reinterpret_cast< QPainter(*)>(_a[1]))); break;
+        case 43: _t->paintCell((*reinterpret_cast< QPainter(*)>(_a[1]))); break;
+        case 44: _t->newGeneration(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -394,13 +399,13 @@ int GameWidget::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 44)
+        if (_id < 45)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 44;
+        _id -= 45;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 44)
+        if (_id < 45)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 44;
+        _id -= 45;
     }
     return _id;
 }

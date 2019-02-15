@@ -23,6 +23,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(m_ui->timer_SpinBox,SIGNAL(valueChanged(int)),this,SLOT(timerChanged(int)));
     connect(m_ui->timer_slider,SIGNAL(valueChanged(int)),this,SLOT(timerChanged(int)));
     connect(m_ui->actionHide_parameters,SIGNAL(toggled(bool)),this,SLOT(hideParameters(bool)));
+    connect(m_ui->actionHide_data,SIGNAL(toggled(bool)),this,SLOT(hideData(bool)));
     connect(m_ui->actionHide_toolbar,SIGNAL(toggled(bool)),this,SLOT(hideToolbar(bool)));
     connect(m_ui->actionMaximized,SIGNAL(triggered()),this,SLOT(maximizedClicked()));
     connect(m_ui->actionNormal,SIGNAL(triggered()),this,SLOT(normalClicked()));
@@ -97,6 +98,11 @@ void MainWindow::hideToolbar(bool hide)
 void MainWindow::hideParameters(bool hide)
 {
     m_ui->groupBox_params->setHidden(hide);
+}
+
+void MainWindow::hideData(bool hide)
+{
+    m_ui->groupBox_data->setHidden(hide);
 }
 
 void MainWindow::aboutGolClicked(){
@@ -220,4 +226,14 @@ void MainWindow::initRange(int min_u,int max_u, int min_t, int max_t)
     m_ui->universe_slider->setRange(min_u,max_u);
     m_ui->timer_SpinBox->setRange(min_t,max_t);
     m_ui->timer_slider->setRange(min_t,max_t);
+}
+
+void MainWindow::setDataCellAlive(int c)
+{
+    m_ui->label_cellAlive->setText(QString::number(c));
+}
+
+void MainWindow::setDataGenerations(int c)
+{
+    m_ui->label_cellGenerations->setText(QString::number(c));
 }

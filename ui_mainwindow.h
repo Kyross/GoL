@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.12.0
+** Created by: Qt User Interface Compiler version 5.12.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -59,10 +59,11 @@ public:
     QAction *actionCompact;
     QAction *actionReset_Timer;
     QAction *actionReset_Color;
+    QAction *actionHide_data;
     QWidget *centralWidget;
     QGridLayout *gridLayout;
     QVBoxLayout *main_layout;
-    QVBoxLayout *params_layout;
+    QHBoxLayout *horizontalLayout;
     QGroupBox *groupBox_params;
     QVBoxLayout *verticalLayout;
     QHBoxLayout *generation_layout;
@@ -79,6 +80,14 @@ public:
     QSpacerItem *horizontalSpacer_2;
     QSlider *timer_slider;
     QSpacerItem *horizontalSpacer_6;
+    QGroupBox *groupBox_data;
+    QVBoxLayout *verticalLayout_4;
+    QHBoxLayout *horizontalLayout_3;
+    QLabel *label_4;
+    QLabel *label_cellAlive;
+    QHBoxLayout *horizontalLayout_2;
+    QLabel *label_2;
+    QLabel *label_cellGenerations;
     QHBoxLayout *layout_boxgame;
     QGroupBox *groupBox_game;
     QGridLayout *gridLayout_2;
@@ -215,6 +224,9 @@ public:
         QIcon icon18;
         icon18.addFile(QString::fromUtf8(":/assets/i_reset_color.png"), QSize(), QIcon::Normal, QIcon::Off);
         actionReset_Color->setIcon(icon18);
+        actionHide_data = new QAction(MainWindow);
+        actionHide_data->setObjectName(QString::fromUtf8("actionHide_data"));
+        actionHide_data->setCheckable(true);
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         gridLayout = new QGridLayout(centralWidget);
@@ -224,9 +236,9 @@ public:
         main_layout = new QVBoxLayout();
         main_layout->setSpacing(6);
         main_layout->setObjectName(QString::fromUtf8("main_layout"));
-        params_layout = new QVBoxLayout();
-        params_layout->setSpacing(6);
-        params_layout->setObjectName(QString::fromUtf8("params_layout"));
+        horizontalLayout = new QHBoxLayout();
+        horizontalLayout->setSpacing(6);
+        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
         groupBox_params = new QGroupBox(centralWidget);
         groupBox_params->setObjectName(QString::fromUtf8("groupBox_params"));
         groupBox_params->setMaximumSize(QSize(16777215, 100));
@@ -319,10 +331,57 @@ public:
         verticalLayout->addLayout(univers_layout);
 
 
-        params_layout->addWidget(groupBox_params);
+        horizontalLayout->addWidget(groupBox_params);
+
+        groupBox_data = new QGroupBox(centralWidget);
+        groupBox_data->setObjectName(QString::fromUtf8("groupBox_data"));
+        groupBox_data->setMinimumSize(QSize(117, 0));
+        groupBox_data->setMaximumSize(QSize(16777215, 100));
+        verticalLayout_4 = new QVBoxLayout(groupBox_data);
+        verticalLayout_4->setSpacing(6);
+        verticalLayout_4->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_4->setObjectName(QString::fromUtf8("verticalLayout_4"));
+        horizontalLayout_3 = new QHBoxLayout();
+        horizontalLayout_3->setSpacing(6);
+        horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
+        label_4 = new QLabel(groupBox_data);
+        label_4->setObjectName(QString::fromUtf8("label_4"));
+        label_4->setMinimumSize(QSize(75, 0));
+        label_4->setMaximumSize(QSize(75, 16777215));
+
+        horizontalLayout_3->addWidget(label_4);
+
+        label_cellAlive = new QLabel(groupBox_data);
+        label_cellAlive->setObjectName(QString::fromUtf8("label_cellAlive"));
+
+        horizontalLayout_3->addWidget(label_cellAlive);
 
 
-        main_layout->addLayout(params_layout);
+        verticalLayout_4->addLayout(horizontalLayout_3);
+
+        horizontalLayout_2 = new QHBoxLayout();
+        horizontalLayout_2->setSpacing(6);
+        horizontalLayout_2->setObjectName(QString::fromUtf8("horizontalLayout_2"));
+        label_2 = new QLabel(groupBox_data);
+        label_2->setObjectName(QString::fromUtf8("label_2"));
+        label_2->setMinimumSize(QSize(75, 0));
+        label_2->setMaximumSize(QSize(75, 16777215));
+
+        horizontalLayout_2->addWidget(label_2);
+
+        label_cellGenerations = new QLabel(groupBox_data);
+        label_cellGenerations->setObjectName(QString::fromUtf8("label_cellGenerations"));
+
+        horizontalLayout_2->addWidget(label_cellGenerations);
+
+
+        verticalLayout_4->addLayout(horizontalLayout_2);
+
+
+        horizontalLayout->addWidget(groupBox_data);
+
+
+        main_layout->addLayout(horizontalLayout);
 
         layout_boxgame = new QHBoxLayout();
         layout_boxgame->setSpacing(6);
@@ -351,7 +410,7 @@ public:
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 626, 21));
+        menuBar->setGeometry(QRect(0, 0, 626, 26));
         menuFile = new QMenu(menuBar);
         menuFile->setObjectName(QString::fromUtf8("menuFile"));
         menuFile->setFocusPolicy(Qt::NoFocus);
@@ -392,6 +451,7 @@ public:
         menuWindow->addSeparator();
         menuWindow->addAction(actionHide_toolbar);
         menuWindow->addAction(actionHide_parameters);
+        menuWindow->addAction(actionHide_data);
         menuAbout->addAction(actionAbout);
         menuAbout->addAction(actionHelp);
         menuOptions->addAction(actionReset_Universe);
@@ -500,11 +560,17 @@ public:
 #ifndef QT_NO_SHORTCUT
         actionReset_Color->setShortcut(QApplication::translate("MainWindow", "Ctrl+C", nullptr));
 #endif // QT_NO_SHORTCUT
+        actionHide_data->setText(QApplication::translate("MainWindow", "Hide data", nullptr));
         groupBox_params->setTitle(QApplication::translate("MainWindow", "Parameters", nullptr));
         universe_label->setText(QApplication::translate("MainWindow", "Universe size", nullptr));
         universe_spinBox->setSuffix(QApplication::translate("MainWindow", " cells", nullptr));
         generation_label->setText(QApplication::translate("MainWindow", "Generation interval", nullptr));
         timer_SpinBox->setSuffix(QApplication::translate("MainWindow", " ms  ", nullptr));
+        groupBox_data->setTitle(QApplication::translate("MainWindow", "Data", nullptr));
+        label_4->setText(QApplication::translate("MainWindow", "Cells alive   ", nullptr));
+        label_cellAlive->setText(QApplication::translate("MainWindow", "0", nullptr));
+        label_2->setText(QApplication::translate("MainWindow", "Generations ", nullptr));
+        label_cellGenerations->setText(QApplication::translate("MainWindow", "0", nullptr));
         groupBox_game->setTitle(QApplication::translate("MainWindow", "Game", nullptr));
         menuFile->setTitle(QApplication::translate("MainWindow", "&File", nullptr));
         menuWindow->setTitle(QApplication::translate("MainWindow", "&Window", nullptr));

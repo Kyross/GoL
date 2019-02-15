@@ -1,7 +1,7 @@
 /****************************************************************************
 ** Meta object code from reading C++ file 'mainwindow.h'
 **
-** Created by: The Qt Meta Object Compiler version 67 (Qt 5.12.0)
+** Created by: The Qt Meta Object Compiler version 67 (Qt 5.12.1)
 **
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
@@ -12,7 +12,7 @@
 #if !defined(Q_MOC_OUTPUT_REVISION)
 #error "The header file 'mainwindow.h' doesn't include <QObject>."
 #elif Q_MOC_OUTPUT_REVISION != 67
-#error "This file was generated using the moc from 5.12.0. It"
+#error "This file was generated using the moc from 5.12.1. It"
 #error "cannot be used with the include files from this version of Qt."
 #error "(The moc has changed too much.)"
 #endif
@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[43];
-    char stringdata0[646];
+    QByteArrayData data[46];
+    char stringdata0[691];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -64,16 +64,19 @@ QT_MOC_LITERAL(29, 468, 12), // "timerChanged"
 QT_MOC_LITERAL(30, 481, 11), // "hideToolbar"
 QT_MOC_LITERAL(31, 493, 4), // "hide"
 QT_MOC_LITERAL(32, 498, 14), // "hideParameters"
-QT_MOC_LITERAL(33, 513, 16), // "maximizedClicked"
-QT_MOC_LITERAL(34, 530, 17), // "fullscreenClicked"
-QT_MOC_LITERAL(35, 548, 13), // "normalClicked"
-QT_MOC_LITERAL(36, 562, 11), // "resizeEvent"
-QT_MOC_LITERAL(37, 574, 13), // "QResizeEvent*"
-QT_MOC_LITERAL(38, 588, 1), // "e"
-QT_MOC_LITERAL(39, 590, 15), // "aboutGolClicked"
-QT_MOC_LITERAL(40, 606, 11), // "helpClicked"
-QT_MOC_LITERAL(41, 618, 11), // "setRunPause"
-QT_MOC_LITERAL(42, 630, 15) // "setParamsEnable"
+QT_MOC_LITERAL(33, 513, 8), // "hideData"
+QT_MOC_LITERAL(34, 522, 16), // "maximizedClicked"
+QT_MOC_LITERAL(35, 539, 17), // "fullscreenClicked"
+QT_MOC_LITERAL(36, 557, 13), // "normalClicked"
+QT_MOC_LITERAL(37, 571, 11), // "resizeEvent"
+QT_MOC_LITERAL(38, 583, 13), // "QResizeEvent*"
+QT_MOC_LITERAL(39, 597, 1), // "e"
+QT_MOC_LITERAL(40, 599, 15), // "aboutGolClicked"
+QT_MOC_LITERAL(41, 615, 11), // "helpClicked"
+QT_MOC_LITERAL(42, 627, 11), // "setRunPause"
+QT_MOC_LITERAL(43, 639, 15), // "setParamsEnable"
+QT_MOC_LITERAL(44, 655, 16), // "setDataCellAlive"
+QT_MOC_LITERAL(45, 672, 18) // "setDataGenerations"
 
     },
     "MainWindow\0runClickedSignal\0\0"
@@ -91,10 +94,11 @@ QT_MOC_LITERAL(42, 630, 15) // "setParamsEnable"
     "resetColorClicked\0parametersClicked\0"
     "universeSizeChanged\0timerChanged\0"
     "hideToolbar\0hide\0hideParameters\0"
-    "maximizedClicked\0fullscreenClicked\0"
+    "hideData\0maximizedClicked\0fullscreenClicked\0"
     "normalClicked\0resizeEvent\0QResizeEvent*\0"
     "e\0aboutGolClicked\0helpClicked\0setRunPause\0"
-    "setParamsEnable"
+    "setParamsEnable\0setDataCellAlive\0"
+    "setDataGenerations"
 };
 #undef QT_MOC_LITERAL
 
@@ -104,7 +108,7 @@ static const uint qt_meta_data_MainWindow[] = {
        8,       // revision
        0,       // classname
        0,    0, // classinfo
-      36,   14, // methods
+      39,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -112,44 +116,47 @@ static const uint qt_meta_data_MainWindow[] = {
       13,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    0,  194,    2, 0x06 /* Public */,
-       3,    0,  195,    2, 0x06 /* Public */,
-       4,    0,  196,    2, 0x06 /* Public */,
-       5,    0,  197,    2, 0x06 /* Public */,
-       6,    0,  198,    2, 0x06 /* Public */,
-       7,    0,  199,    2, 0x06 /* Public */,
-       8,    0,  200,    2, 0x06 /* Public */,
-       9,    0,  201,    2, 0x06 /* Public */,
-      10,    0,  202,    2, 0x06 /* Public */,
-      11,    1,  203,    2, 0x06 /* Public */,
-      13,    1,  206,    2, 0x06 /* Public */,
-      15,    0,  209,    2, 0x06 /* Public */,
-      16,    0,  210,    2, 0x06 /* Public */,
+       1,    0,  209,    2, 0x06 /* Public */,
+       3,    0,  210,    2, 0x06 /* Public */,
+       4,    0,  211,    2, 0x06 /* Public */,
+       5,    0,  212,    2, 0x06 /* Public */,
+       6,    0,  213,    2, 0x06 /* Public */,
+       7,    0,  214,    2, 0x06 /* Public */,
+       8,    0,  215,    2, 0x06 /* Public */,
+       9,    0,  216,    2, 0x06 /* Public */,
+      10,    0,  217,    2, 0x06 /* Public */,
+      11,    1,  218,    2, 0x06 /* Public */,
+      13,    1,  221,    2, 0x06 /* Public */,
+      15,    0,  224,    2, 0x06 /* Public */,
+      16,    0,  225,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-      17,    0,  211,    2, 0x0a /* Public */,
-      18,    0,  212,    2, 0x0a /* Public */,
-      19,    0,  213,    2, 0x0a /* Public */,
-      20,    0,  214,    2, 0x0a /* Public */,
-      21,    0,  215,    2, 0x0a /* Public */,
-      22,    0,  216,    2, 0x0a /* Public */,
-      23,    0,  217,    2, 0x0a /* Public */,
-      24,    0,  218,    2, 0x0a /* Public */,
-      25,    0,  219,    2, 0x0a /* Public */,
-      26,    0,  220,    2, 0x0a /* Public */,
-      27,    0,  221,    2, 0x0a /* Public */,
-      28,    1,  222,    2, 0x0a /* Public */,
-      29,    1,  225,    2, 0x0a /* Public */,
-      30,    1,  228,    2, 0x0a /* Public */,
-      32,    1,  231,    2, 0x0a /* Public */,
-      33,    0,  234,    2, 0x0a /* Public */,
-      34,    0,  235,    2, 0x0a /* Public */,
-      35,    0,  236,    2, 0x0a /* Public */,
-      36,    1,  237,    2, 0x0a /* Public */,
-      39,    0,  240,    2, 0x0a /* Public */,
-      40,    0,  241,    2, 0x0a /* Public */,
-      41,    2,  242,    2, 0x0a /* Public */,
-      42,    2,  247,    2, 0x0a /* Public */,
+      17,    0,  226,    2, 0x0a /* Public */,
+      18,    0,  227,    2, 0x0a /* Public */,
+      19,    0,  228,    2, 0x0a /* Public */,
+      20,    0,  229,    2, 0x0a /* Public */,
+      21,    0,  230,    2, 0x0a /* Public */,
+      22,    0,  231,    2, 0x0a /* Public */,
+      23,    0,  232,    2, 0x0a /* Public */,
+      24,    0,  233,    2, 0x0a /* Public */,
+      25,    0,  234,    2, 0x0a /* Public */,
+      26,    0,  235,    2, 0x0a /* Public */,
+      27,    0,  236,    2, 0x0a /* Public */,
+      28,    1,  237,    2, 0x0a /* Public */,
+      29,    1,  240,    2, 0x0a /* Public */,
+      30,    1,  243,    2, 0x0a /* Public */,
+      32,    1,  246,    2, 0x0a /* Public */,
+      33,    1,  249,    2, 0x0a /* Public */,
+      34,    0,  252,    2, 0x0a /* Public */,
+      35,    0,  253,    2, 0x0a /* Public */,
+      36,    0,  254,    2, 0x0a /* Public */,
+      37,    1,  255,    2, 0x0a /* Public */,
+      40,    0,  258,    2, 0x0a /* Public */,
+      41,    0,  259,    2, 0x0a /* Public */,
+      42,    2,  260,    2, 0x0a /* Public */,
+      43,    2,  265,    2, 0x0a /* Public */,
+      44,    1,  270,    2, 0x0a /* Public */,
+      45,    1,  273,    2, 0x0a /* Public */,
 
  // signals: parameters
     QMetaType::Void,
@@ -182,14 +189,17 @@ static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Void, QMetaType::Int,   14,
     QMetaType::Void, QMetaType::Bool,   31,
     QMetaType::Void, QMetaType::Bool,   31,
+    QMetaType::Void, QMetaType::Bool,   31,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 37,   38,
+    QMetaType::Void, 0x80000000 | 38,   39,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void, QMetaType::Bool, QMetaType::Bool,    2,    2,
     QMetaType::Void, QMetaType::Bool, QMetaType::Bool,    2,    2,
+    QMetaType::Void, QMetaType::Int,    2,
+    QMetaType::Void, QMetaType::Int,    2,
 
        0        // eod
 };
@@ -197,7 +207,7 @@ static const uint qt_meta_data_MainWindow[] = {
 void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void **_a)
 {
     if (_c == QMetaObject::InvokeMetaMethod) {
-        MainWindow *_t = static_cast<MainWindow *>(_o);
+        auto *_t = static_cast<MainWindow *>(_o);
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->runClickedSignal(); break;
@@ -228,14 +238,17 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 25: _t->timerChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 26: _t->hideToolbar((*reinterpret_cast< bool(*)>(_a[1]))); break;
         case 27: _t->hideParameters((*reinterpret_cast< bool(*)>(_a[1]))); break;
-        case 28: _t->maximizedClicked(); break;
-        case 29: _t->fullscreenClicked(); break;
-        case 30: _t->normalClicked(); break;
-        case 31: _t->resizeEvent((*reinterpret_cast< QResizeEvent*(*)>(_a[1]))); break;
-        case 32: _t->aboutGolClicked(); break;
-        case 33: _t->helpClicked(); break;
-        case 34: _t->setRunPause((*reinterpret_cast< bool(*)>(_a[1])),(*reinterpret_cast< bool(*)>(_a[2]))); break;
-        case 35: _t->setParamsEnable((*reinterpret_cast< bool(*)>(_a[1])),(*reinterpret_cast< bool(*)>(_a[2]))); break;
+        case 28: _t->hideData((*reinterpret_cast< bool(*)>(_a[1]))); break;
+        case 29: _t->maximizedClicked(); break;
+        case 30: _t->fullscreenClicked(); break;
+        case 31: _t->normalClicked(); break;
+        case 32: _t->resizeEvent((*reinterpret_cast< QResizeEvent*(*)>(_a[1]))); break;
+        case 33: _t->aboutGolClicked(); break;
+        case 34: _t->helpClicked(); break;
+        case 35: _t->setRunPause((*reinterpret_cast< bool(*)>(_a[1])),(*reinterpret_cast< bool(*)>(_a[2]))); break;
+        case 36: _t->setParamsEnable((*reinterpret_cast< bool(*)>(_a[1])),(*reinterpret_cast< bool(*)>(_a[2]))); break;
+        case 37: _t->setDataCellAlive((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 38: _t->setDataGenerations((*reinterpret_cast< int(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -363,13 +376,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 36)
+        if (_id < 39)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 36;
+        _id -= 39;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 36)
+        if (_id < 39)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 36;
+        _id -= 39;
     }
     return _id;
 }

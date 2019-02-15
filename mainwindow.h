@@ -61,6 +61,7 @@ public slots:
     void timerChanged(int t);
     void hideToolbar(bool hide);
     void hideParameters(bool hide);
+    void hideData(bool hide);
     //Window
     void maximizedClicked();
     void fullscreenClicked();
@@ -72,6 +73,8 @@ public slots:
     //Setter
     void setRunPause(bool,bool);
     void setParamsEnable(bool,bool);
+    void setDataCellAlive(int);
+    void setDataGenerations(int);
 
 private:
     Ui::MainWindow *m_ui;
