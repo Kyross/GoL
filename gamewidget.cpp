@@ -62,6 +62,7 @@ void GameWidget::clearGame()
     m_generations=0;
     emit gameClearSignal();
     emit gameRunningSignal(isEmpty(),isRunning());
+    emit gameGenerationSignal(m_generations);
 
     update();
 }
@@ -217,7 +218,6 @@ void GameWidget::newGeneration()
 {
     m_generations++;
     emit gameGenerationSignal(m_generations);
-
     int notChanged=0;
     for(int k=1; k <= m_cell; k++) {
         for(int j=1; j <= m_cell; j++) {

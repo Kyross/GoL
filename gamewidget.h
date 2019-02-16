@@ -20,7 +20,7 @@ class GameWidget : public QWidget
 public:
     explicit GameWidget(QWidget *parent = 0);
     static const int DEFAULT_MIN_CELLS=6;
-    static const int DEFAULT_MAX_CELLS=500;
+    static const int DEFAULT_MAX_CELLS=150;
     static const int DEFAULT_VALUE_CELLS=20;
     static const int DEFAULT_MIN_TIMER=1;
     static const int DEFAULT_MAX_TIMER=1000;

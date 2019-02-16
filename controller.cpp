@@ -75,7 +75,7 @@ Controller::Controller(QApplication *app,MainWindow *window, GameWidget *game, Q
 
 void Controller::run()
 {
-    if(!m_game->isRunning()){
+    if(!m_game->isRunning() && !m_game->isEmpty()){
         m_game->runGame();
     }
     m_window->status("Game is running : "+QString::number(m_game->getGenerations())+" generations");
@@ -96,7 +96,6 @@ void Controller::end()
 void Controller::clear()
 {
     m_game->stopGame();
-    m_window->setDataGenerations(m_game->getGenerations());
     if(!m_game->isEmpty()){
         m_game->clearGame();
         m_window->status("");
@@ -113,7 +112,6 @@ void Controller::newFile()
     m_game->resetMode();
     m_window->status("");
     m_window->statusBar()->showMessage("New File done",1000);
-    m_window->setDataGenerations(m_game->getGenerations());
 }
 
 void Controller::mode(bool born,bool stase,bool dead,int min_born,int max_born,int min_stase,int max_stase)
